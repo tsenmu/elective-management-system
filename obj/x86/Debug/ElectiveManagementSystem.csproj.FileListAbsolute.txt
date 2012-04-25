@@ -1,0 +1,9 @@
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\bin\Debug\ElectiveManagementSystem.exe
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\bin\Debug\ElectiveManagementSystem.pdb
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\obj\x86\Debug\ElectiveManagementSystem.Properties.Resources.resources
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\obj\x86\Debug\ElectiveManagementSystem.exe
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\obj\x86\Debug\ElectiveManagementSystem.pdb
+E:\Developer\Courses\Sophomore\dotNet\ElectiveManagementSystem\ElectiveManagementSystem\obj\x86\Debug\ElectiveManagementSystem.UserLoginForm.resources

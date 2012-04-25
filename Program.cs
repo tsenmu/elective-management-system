@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+
 namespace ElectiveManagementSystem
 {
     static class Program
@@ -15,7 +16,8 @@ namespace ElectiveManagementSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new UserLoginForm());
         }
+        
     }
 }

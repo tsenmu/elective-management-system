@@ -9,11 +9,21 @@ using System.Windows.Forms;
 
 namespace ElectiveManagementSystem
 {
-    public partial class MainForm : Form
+    public partial class UserLoginForm : Form
     {
-        public MainForm()
+        public UserLoginForm()
         {
             InitializeComponent();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userLoginForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
