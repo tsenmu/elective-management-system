@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_electiveManagement = new System.Windows.Forms.TabPage();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -42,14 +43,17 @@
             this.dataGridView_unselectedCourses = new System.Windows.Forms.DataGridView();
             this.dataGridView_selectedCourses = new System.Windows.Forms.DataGridView();
             this.tabPage_schedule = new System.Windows.Forms.TabPage();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.elecdbDataSet = new ElectiveManagementSystem.elecdbDataSet();
+            this.elecdbDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl.SuspendLayout();
             this.tabPage_electiveManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_selectedCourses)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.tabPage_schedule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.elecdbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.elecdbDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -170,15 +174,19 @@
             // 
             // dataGridView_selectedCourses
             // 
+            this.dataGridView_selectedCourses.AutoGenerateColumns = false;
             this.dataGridView_selectedCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_selectedCourses.DataSource = this.elecdbDataSetBindingSource;
             this.dataGridView_selectedCourses.Location = new System.Drawing.Point(6, 24);
             this.dataGridView_selectedCourses.Name = "dataGridView_selectedCourses";
             this.dataGridView_selectedCourses.RowTemplate.Height = 23;
             this.dataGridView_selectedCourses.Size = new System.Drawing.Size(781, 186);
             this.dataGridView_selectedCourses.TabIndex = 0;
+            this.dataGridView_selectedCourses.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_selectedCourses_CellContentClick);
             // 
             // tabPage_schedule
             // 
+            this.tabPage_schedule.Controls.Add(this.dataGridView1);
             this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
             this.tabPage_schedule.Name = "tabPage_schedule";
             this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
@@ -187,42 +195,30 @@
             this.tabPage_schedule.Text = "课表";
             this.tabPage_schedule.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // dataGridView1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(77, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(200, 100);
-            this.tabControl1.TabIndex = 1;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(781, 573);
+            this.dataGridView1.TabIndex = 0;
             // 
-            // tabPage1
+            // elecdbDataSet
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 21);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(192, 75);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.elecdbDataSet.DataSetName = "elecdbDataSet";
+            this.elecdbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // tabPage2
+            // elecdbDataSetBindingSource
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 21);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 75);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.elecdbDataSetBindingSource.DataSource = this.elecdbDataSet;
+            this.elecdbDataSetBindingSource.Position = 0;
             // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 634);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.tabControl);
             this.Name = "UserForm";
             this.Text = "学生选课系统";
@@ -231,7 +227,10 @@
             this.tabPage_electiveManagement.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_selectedCourses)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.tabPage_schedule.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.elecdbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.elecdbDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -252,8 +251,8 @@
         private System.Windows.Forms.Button button_search;
         private System.Windows.Forms.Label label_unselectedCourses;
         private System.Windows.Forms.Label label_SelectedCourses;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource elecdbDataSetBindingSource;
+        private elecdbDataSet elecdbDataSet;
     }
 }

@@ -15,5 +15,10 @@ namespace ElectiveManagementSystem
         {
             InitializeComponent();
         }
+
+        private void dataGridView_selectedCourses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
