@@ -64,11 +64,6 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="elecdbDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>elecdbDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserForm.cs">
@@ -101,18 +96,6 @@
     <EmbeddedResource Include="UserLogin.resx">
       <DependentUpon>UserLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
-    <None Include="elecdbDataSet.xsc">
-      <DependentUpon>elecdbDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="elecdbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>elecdbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="elecdbDataSet.xss">
-      <DependentUpon>elecdbDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -42,7 +42,7 @@
             this.checkBoxIsAdmin.AutoSize = true;
             this.checkBoxIsAdmin.Location = new System.Drawing.Point(202, 65);
             this.checkBoxIsAdmin.Name = "checkBoxIsAdmin";
-            this.checkBoxIsAdmin.Size = new System.Drawing.Size(83, 16);
+            this.checkBoxIsAdmin.Size = new System.Drawing.Size(84, 16);
             this.checkBoxIsAdmin.TabIndex = 0;
             this.checkBoxIsAdmin.Text = "管理员登录";
             this.checkBoxIsAdmin.UseVisualStyleBackColor = true;
@@ -56,6 +56,7 @@
             this.button_login.TabIndex = 1;
             this.button_login.Text = "登录";
             this.button_login.UseVisualStyleBackColor = true;
+            this.button_login.Click += new System.EventHandler(this.button_login_Click);
             // 
             // textBox_user
             // 

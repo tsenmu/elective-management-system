@@ -30,5 +30,12 @@ namespace ElectiveManagementSystem
         {
 
         }
+
+        private void button_login_Click(object sender, EventArgs e)
+        {
+            UserForm userform = new UserForm();
+            this.Hide();
+            userform.Show();
+        }
     }
 }
