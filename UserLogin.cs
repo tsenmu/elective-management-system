@@ -25,5 +25,10 @@ namespace ElectiveManagementSystem
         {
 
         }
+
+        private void textBox_user_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
