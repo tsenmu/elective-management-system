@@ -43,6 +43,7 @@
             this.dataGridView_selectedCourses = new System.Windows.Forms.DataGridView();
             this.tabPage_schedule = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tabPage_information = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage_electiveManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).BeginInit();
@@ -55,6 +56,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPage_electiveManagement);
             this.tabControl.Controls.Add(this.tabPage_schedule);
+            this.tabControl.Controls.Add(this.tabPage_information);
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -74,10 +76,10 @@
             this.tabPage_electiveManagement.Controls.Add(this.label_SelectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_unselectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_selectedCourses);
-            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 21);
             this.tabPage_electiveManagement.Name = "tabPage_electiveManagement";
             this.tabPage_electiveManagement.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 584);
+            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 585);
             this.tabPage_electiveManagement.TabIndex = 0;
             this.tabPage_electiveManagement.Text = "选课退课";
             this.tabPage_electiveManagement.UseVisualStyleBackColor = true;
@@ -180,10 +182,10 @@
             // tabPage_schedule
             // 
             this.tabPage_schedule.Controls.Add(this.dataGridView1);
-            this.tabPage_schedule.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
             this.tabPage_schedule.Name = "tabPage_schedule";
             this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_schedule.Size = new System.Drawing.Size(793, 584);
+            this.tabPage_schedule.Size = new System.Drawing.Size(793, 585);
             this.tabPage_schedule.TabIndex = 1;
             this.tabPage_schedule.Text = "课表";
             this.tabPage_schedule.UseVisualStyleBackColor = true;
@@ -197,6 +199,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(781, 573);
             this.dataGridView1.TabIndex = 0;
             // 
+            // tabPage_information
+            // 
+            this.tabPage_information.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_information.Name = "tabPage_information";
+            this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_information.Size = new System.Drawing.Size(793, 585);
+            this.tabPage_information.TabIndex = 2;
+            this.tabPage_information.Text = "个人信息";
+            this.tabPage_information.UseVisualStyleBackColor = true;
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -205,6 +217,7 @@
             this.Controls.Add(this.tabControl);
             this.Name = "UserForm";
             this.Text = "学生选课系统";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserForm_FormClosed);
             this.Load += new System.EventHandler(this.UserForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage_electiveManagement.ResumeLayout(false);
@@ -234,5 +247,6 @@
         private System.Windows.Forms.Label label_unselectedCourses;
         private System.Windows.Forms.Label label_SelectedCourses;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TabPage tabPage_information;
     }
 }

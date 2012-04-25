@@ -11,10 +11,14 @@ namespace ElectiveManagementSystem
 {
     public partial class UserForm : Form
     {
-        public UserForm()
+        private Kernel kernel;
+
+        public UserForm(Kernel kernel)
         {
+            this.kernel = kernel;
             InitializeComponent();
         }
+
 
         private void dataGridView_selectedCourses_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -24,6 +28,11 @@ namespace ElectiveManagementSystem
         private void UserForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            kernel.Close();
         }
     }
 }

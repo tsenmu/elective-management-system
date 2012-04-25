@@ -1,6 +1,6 @@
 ﻿namespace ElectiveManagementSystem
 {
-    partial class UserLoginForm
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -40,13 +40,13 @@
             // checkBoxIsAdmin
             // 
             this.checkBoxIsAdmin.AutoSize = true;
-            this.checkBoxIsAdmin.Location = new System.Drawing.Point(202, 65);
+            this.checkBoxIsAdmin.Location = new System.Drawing.Point(202, 69);
             this.checkBoxIsAdmin.Name = "checkBoxIsAdmin";
-            this.checkBoxIsAdmin.Size = new System.Drawing.Size(84, 16);
+            this.checkBoxIsAdmin.Size = new System.Drawing.Size(83, 16);
             this.checkBoxIsAdmin.TabIndex = 0;
             this.checkBoxIsAdmin.Text = "管理员登录";
             this.checkBoxIsAdmin.UseVisualStyleBackColor = true;
-            this.checkBoxIsAdmin.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxIsAdmin.CheckedChanged += new System.EventHandler(this.checkBox_isAdmin_CheckedChanged);
             // 
             // button_login
             // 
@@ -68,7 +68,7 @@
             // 
             // textBox_password
             // 
-            this.textBox_password.Location = new System.Drawing.Point(78, 60);
+            this.textBox_password.Location = new System.Drawing.Point(78, 58);
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.Size = new System.Drawing.Size(100, 21);
             this.textBox_password.TabIndex = 3;
@@ -77,7 +77,7 @@
             // label_user
             // 
             this.label_user.AutoSize = true;
-            this.label_user.Location = new System.Drawing.Point(35, 30);
+            this.label_user.Location = new System.Drawing.Point(35, 31);
             this.label_user.Name = "label_user";
             this.label_user.Size = new System.Drawing.Size(29, 12);
             this.label_user.TabIndex = 4;
@@ -86,7 +86,7 @@
             // label_password
             // 
             this.label_password.AutoSize = true;
-            this.label_password.Location = new System.Drawing.Point(35, 63);
+            this.label_password.Location = new System.Drawing.Point(35, 62);
             this.label_password.Name = "label_password";
             this.label_password.Size = new System.Drawing.Size(29, 12);
             this.label_password.TabIndex = 5;
@@ -100,11 +100,14 @@
             this.button_cancel.TabIndex = 6;
             this.button_cancel.Text = "关闭";
             this.button_cancel.UseVisualStyleBackColor = true;
+            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
             // 
-            // UserLoginForm
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(290, 142);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.label_password);
@@ -113,8 +116,11 @@
             this.Controls.Add(this.textBox_user);
             this.Controls.Add(this.button_login);
             this.Controls.Add(this.checkBoxIsAdmin);
-            this.Name = "UserLoginForm";
+            this.MaximumSize = new System.Drawing.Size(298, 176);
+            this.MinimumSize = new System.Drawing.Size(298, 176);
+            this.Name = "LoginForm";
             this.Text = "学生选课系统";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
             this.Load += new System.EventHandler(this.userLoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

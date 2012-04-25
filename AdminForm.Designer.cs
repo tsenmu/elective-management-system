@@ -84,6 +84,7 @@
             this.Controls.Add(this.tabControl);
             this.Name = "AdminForm";
             this.Text = "学生选课系统（管理员模式）";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminForm_FormClosed);
             this.Load += new System.EventHandler(this.AdminForm_Load);
             this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
