@@ -19,6 +19,23 @@ namespace ElectiveManagementSystem
         ALL_COURSES,
         SYSTEM,
     }
+
+    public class SearchingCache
+    {
+        public SearchingCache()
+        {
+            searching_cache_courseID = "";
+            searching_cache_courseName = "";
+            searching_cache_isLastCommandSearch = false;
+            searching_cache_department = "";
+            searching_cache_view = null;
+        }
+        public string searching_cache_courseID{set; get;}
+        public string searching_cache_courseName { set; get; }
+        public string searching_cache_department { set; get; }
+        public DataGridView searching_cache_view { set; get; }
+        public bool searching_cache_isLastCommandSearch { set; get; }
+    }
     public partial class Kernel
     {
         // These members maintained below are forms.
@@ -67,16 +84,18 @@ namespace ElectiveManagementSystem
         /*SYSTEM*/
         private DataSet setSystem = null;
         private MySqlDataAdapter adpSystem = null;
+        
+         /* Searching cache */
+        private SearchingCache searchingCache;
 
         public Kernel(string server, string database, string userid, string password)
         {
             currentUserID = "";
             isAdmin = false;
             InitConnection(server, database, userid, password);
+            searchingCache = new SearchingCache();
             loginForm = new LoginForm(this);
             loginForm.Show();
-            Utils.DecodeTime("");
-            Console.WriteLine("Kernel started");
         }
         private void InitConnection(string server, string database, string userid, string password)
         {
@@ -90,7 +109,7 @@ namespace ElectiveManagementSystem
             MySqlConnection conn = new MySqlConnection("server=" +
                 conn_server + ";User Id=" + conn_userid +
                 ";Password=" + conn_passwd + ";database="
-                + conn_database);
+                + conn_database + ";CharSet=utf8;");
             return conn;
         }
         public void Login(string id, string password, bool isAdmin)
@@ -386,9 +405,9 @@ namespace ElectiveManagementSystem
 
         public void Search(string courseID, string courseName, string department, DataGridView view)
         {
+
             try
             {
-                MessageBox.Show(department);
                 conn = getConnection();
                 cmd = new MySqlCommand(
                     "searchUnselectedCourses", conn);
@@ -410,10 +429,86 @@ namespace ElectiveManagementSystem
                 adpSearchResults.Fill(setSearchResults);
                 view.DataSource = setSearchResults;
                 view.DataMember = "Table";
+                FillSearchingCache(courseID, courseName, department, view);
             }
             finally
             {
 
+            }
+        }
+
+        private void FillSearchingCache(string courseID, string courseName, string department, DataGridView view)
+        {
+            searchingCache.searching_cache_courseID = courseID;
+            searchingCache.searching_cache_courseName = courseName;
+            searchingCache.searching_cache_department = department;
+            searchingCache.searching_cache_view = view;
+            searchingCache.searching_cache_isLastCommandSearch = true;
+        }
+
+        private void ReloadUserForm()
+        {
+            if (userForm != null)
+            {
+                userForm.Reload(searchingCache.searching_cache_isLastCommandSearch, searchingCache);
+            }
+        }
+        public void SelectCourse(DataGridView view)
+        {
+            if (view.RowCount == 0)
+            {
+                MessageBox.Show("你没有选择任何项！");
+                return;
+            }
+            try
+            {
+                String cid = view.SelectedRows[0].Cells["u_id"].Value.ToString();
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand(
+                    "selectCourse", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
+                cmd.Parameters.Add(new MySqlParameter("@course_id", cid));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+                ReloadUserForm();
+            }
+        }
+
+        public void UnselectCourse(DataGridView view)
+        {
+            if (view.RowCount == 0)
+            {
+                MessageBox.Show("你没有选择任何项！");
+                return;
+            }
+            try
+            {
+                String cid = view.SelectedRows[0].Cells["s_id"].Value.ToString();
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand(
+                    "unselectCourse", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
+                cmd.Parameters.Add(new MySqlParameter("@course_id", cid));
+                cmd.ExecuteNonQuery();
+                
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+                ReloadUserForm();
             }
         }
         public void addCourses(String cid, String name, String time, String detail, String rid, String credit, String department)
