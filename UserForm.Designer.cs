@@ -196,7 +196,6 @@
             this.dataGridView_unselectedCourses.Size = new System.Drawing.Size(781, 300);
             this.dataGridView_unselectedCourses.TabIndex = 1;
             this.dataGridView_unselectedCourses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_unselectedCourses_CellFormatting);
-            this.dataGridView_unselectedCourses.SelectionChanged += new System.EventHandler(this.dataGridView_unselectedCourses_SelectionChanged);
             // 
             // u_id
             // 

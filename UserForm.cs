@@ -47,16 +47,6 @@ namespace ElectiveManagementSystem
             kernel.Close();
         }
 
-     
-
-        private void dataGridView_unselectedCourses_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView_unselectedCourses.CurrentRow != null)
-            {
-                dataGridView_unselectedCourses.CurrentRow.Selected = true;
-            }
-        }
-
         private void dataGridView_selectedCourses_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
          
@@ -74,6 +64,22 @@ namespace ElectiveManagementSystem
             }
         }
 
+
+        public void Reload(bool isLastCommandSearch, SearchingCache sc)
+        {
+            if (isLastCommandSearch)
+            {
+                kernel.Search(sc.searching_cache_courseID, sc.searching_cache_courseName, sc.searching_cache_department, dataGridView_unselectedCourses);
+                kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
+                kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
+            }
+            else
+            {
+                kernel.Load(KernelLoadModifier.UNSELECTED_COURSES, dataGridView_unselectedCourses);
+                kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
+                kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
+            }
+        }
         private void button_search_Click(object sender, EventArgs e)
         {
             kernel.Search(textBox_courseID.Text, textBox_courseName.Text, comboBox_department.Text, dataGridView_unselectedCourses);
