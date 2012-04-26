@@ -81,7 +81,7 @@ namespace ElectiveManagementSystem
             MySqlConnection conn = new MySqlConnection("server=" +
                 conn_server + ";User Id=" + conn_userid +
                 ";Password=" + conn_passwd + ";database="
-                + conn_database);
+                + conn_database + ";CharSet=utf8;");
             return conn;
         }
         public void Login(string id, string password, bool isAdmin)
@@ -356,7 +356,6 @@ namespace ElectiveManagementSystem
         {
             try
             {
-                MessageBox.Show(department);
                 conn = getConnection();
                 cmd = new MySqlCommand(
                     "searchUnselectedCourses", conn);
