@@ -12,7 +12,6 @@ namespace ElectiveManagementSystem
     public partial class UserForm : Form
     {
         private Kernel kernel;
-
         public UserForm(Kernel kernel)
         {
             this.kernel = kernel;

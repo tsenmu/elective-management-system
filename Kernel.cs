@@ -17,6 +17,7 @@ namespace ElectiveManagementSystem
         DEPARTMENT,
         STUDENT,
         ALL_COURSES,
+        SYSTEM,
     }
     public partial class Kernel
     {
@@ -59,6 +60,14 @@ namespace ElectiveManagementSystem
         /*All Courses*/
         private DataSet setAllCourses = null;
         private MySqlDataAdapter adpAllCourses = null;
+        private MySqlCommand addCourseCommand = null;
+        private MySqlCommand removeCourseCommand = null;
+        private MySqlCommand updateCourseCommand = null;
+        private MySqlCommandBuilder courseCommandBuilder = null;
+        /*SYSTEM*/
+        private DataSet setSystem = null;
+        private MySqlDataAdapter adpSystem = null;
+
         public Kernel(string server, string database, string userid, string password)
         {
             currentUserID = "";
@@ -319,7 +328,6 @@ namespace ElectiveManagementSystem
                             cmd);
                     }
                     adpStudentList.Fill(setStudentList);
-                    //  setUnselectedCourses.Tables.
                     view.DataSource = setStudentList;
                     view.DataMember = "Table";
                 }
@@ -343,12 +351,36 @@ namespace ElectiveManagementSystem
                     if (adpAllCourses == null)
                         adpAllCourses = new MySqlDataAdapter(cmd);
                     adpAllCourses.Fill(setAllCourses);
+                    courseCommandBuilder = new MySqlCommandBuilder(adpAllCourses);
                     view.DataSource = setAllCourses;
                     view.DataMember = "Table";
                 }
                 finally
                 {
                 }
+            }
+            else if (modifier == KernelLoadModifier.SYSTEM) 
+            {
+                DataGridView view = (DataGridView)control;
+                conn = getConnection();
+                cmd = new MySqlCommand("select * from system;", conn);
+                if (setSystem == null)
+                    setSystem = new DataSet();
+                else
+                    setSystem.Clear();
+                if (adpSystem == null)
+                    adpSystem = new MySqlDataAdapter(cmd);
+                adpSystem.Fill(setSystem);
+                view.DataSource = setSystem;
+                view.DataMember = "Table";
+            }
+        }
+
+        public void update(KernelLoadModifier modifier)
+        {
+            if (modifier == KernelLoadModifier.ALL_COURSES)
+            {
+                adpAllCourses.Update(setAllCourses);
             }
         }
 
@@ -383,6 +415,17 @@ namespace ElectiveManagementSystem
             {
 
             }
+        }
+        public void addCourses(String cid, String name, String time, String detail, String rid, String credit, String department)
+        {
+            addCourseCommand = new MySqlCommand("INSERT INTO course VALUES (@cid, @name, @time, @detail, @rid, @credit, did) where (select * from department where @department = department.name)");
+            addCourseCommand.Parameters.Add("@cid", cid);
+            addCourseCommand.Parameters.Add("@name", name);
+            addCourseCommand.Parameters.Add("@detail", detail);
+            addCourseCommand.Parameters.Add("@rid", rid);
+            addCourseCommand.Parameters.Add("@credit", credit);
+            addCourseCommand.Parameters.Add("@department", department);
+
         }
     }
 }
