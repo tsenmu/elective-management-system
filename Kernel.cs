@@ -59,6 +59,9 @@ namespace ElectiveManagementSystem
         /*All Courses*/
         private DataSet setAllCourses = null;
         private MySqlDataAdapter adpAllCourses = null;
+        /* SelectCourse */
+
+
         public Kernel(string server, string database, string userid, string password)
         {
             currentUserID = "";
@@ -381,6 +384,53 @@ namespace ElectiveManagementSystem
             finally
             {
 
+            }
+        }
+        public void SelectCourse(DataGridView view)
+        {
+            try
+            {
+                String cid = view.SelectedRows[0].Cells["u_id"].Value.ToString();
+               // MessageBox.Show("<" + cid + ">");
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand(
+                    "selectCourse", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
+                cmd.Parameters.Add(new MySqlParameter("@course_id", cid));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public void UnselectCourse(DataGridView view)
+        {
+            try
+            {
+                String cid = view.SelectedRows[0].Cells["s_id"].Value.ToString();
+               // MessageBox.Show("<" + cid + ">");
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand(
+                    "unselectCourse", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
+                cmd.Parameters.Add(new MySqlParameter("@course_id", cid));
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
             }
         }
     }

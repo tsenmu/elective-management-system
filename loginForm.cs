@@ -43,7 +43,7 @@ namespace ElectiveManagementSystem
         private void button_cancel_Click(object sender, EventArgs e)
         {
             kernel.Close();
-        }
+        } 
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {

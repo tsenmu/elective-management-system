@@ -47,13 +47,7 @@ namespace ElectiveManagementSystem
             kernel.Close();
         }
 
-        private void dataGridView_selectedCourses_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridView_selectedCourses.CurrentRow != null)
-            {
-                dataGridView_selectedCourses.CurrentRow.Selected = true;
-            }
-        }
+     
 
         private void dataGridView_unselectedCourses_SelectionChanged(object sender, EventArgs e)
         {
@@ -83,6 +77,16 @@ namespace ElectiveManagementSystem
         private void button_search_Click(object sender, EventArgs e)
         {
             kernel.Search(textBox_courseID.Text, textBox_courseName.Text, comboBox_department.Text, dataGridView_unselectedCourses);
+        }
+
+        private void button_remove_Click(object sender, EventArgs e)
+        {
+            kernel.UnselectCourse(dataGridView_selectedCourses);
+        }
+
+        private void button_add_Click(object sender, EventArgs e)
+        {
+            kernel.SelectCourse(dataGridView_unselectedCourses);
         }
 
        
