@@ -15,6 +15,8 @@ namespace ElectiveManagementSystem
         UNSELECTED_COURSES,
         SELECTED_COURSES,
         DEPARTMENT,
+        STUDENT,
+        ALL_COURSES,
     }
     public class Kernel
     {
@@ -51,7 +53,12 @@ namespace ElectiveManagementSystem
         /* SearchUnselectedCourses */
         private DataSet setSearchResults = null;
         private MySqlDataAdapter adpSearchResults = null;
-
+        /*StudentList*/
+        private DataSet setStudentList = null;
+        private MySqlDataAdapter adpStudentList = null;
+        /*All Courses*/
+        private DataSet setAllCourses = null;
+        private MySqlDataAdapter adpAllCourses = null;
         public Kernel(string server, string database, string userid, string password)
         {
             currentUserID = "";
@@ -179,15 +186,15 @@ namespace ElectiveManagementSystem
         {
             if (loginForm != null)
             {
-                loginForm.Close();
+                loginForm.Dispose();
             }
             if (adminForm != null)
             {
-                adminForm.Close();
+                adminForm.Dispose();
             }
             if (userForm != null)
             {
-                userForm.Close();
+                userForm.Dispose();
             }
             Application.Exit();
         }
@@ -290,6 +297,61 @@ namespace ElectiveManagementSystem
                     adpDepartmentNames.Fill(setDepartmentNames);
                     comboBox.DataSource = setDepartmentNames.Tables["Table"];
                     comboBox.DisplayMember = "department_name";
+                }
+                finally
+                {
+                }
+            }
+            else if (modifier == KernelLoadModifier.STUDENT)
+            {
+                try
+                {
+                    DataGridView view = (DataGridView)control;
+                    conn = getConnection();
+                    cmd = new MySqlCommand(
+                        "getStudentList", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (setStudentList == null)
+                    {
+                        setStudentList = new DataSet();
+                    }
+                    else
+                    {
+                        setStudentList.Clear();
+                    }
+                    if (adpStudentList == null)
+                    {
+                        adpStudentList = new MySqlDataAdapter(
+                            cmd);
+                    }
+                    adpStudentList.Fill(setStudentList);
+                    //  setUnselectedCourses.Tables.
+                    view.DataSource = setStudentList;
+                    view.DataMember = "Table";
+                }
+                finally
+                {
+                }
+            }
+            else if (modifier == KernelLoadModifier.ALL_COURSES)
+            {
+                try
+                {
+                    DataGridView view = (DataGridView)control;
+                    conn = getConnection();
+                    cmd = new MySqlCommand(
+                        "getAllCourses", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (setAllCourses == null)
+                        setAllCourses = new DataSet();
+                    else
+                        setAllCourses.Clear();
+                    if (adpAllCourses == null)
+                        adpAllCourses = new MySqlDataAdapter(cmd);
+                    adpAllCourses.Fill(setAllCourses);
+                    view.DataSource = setAllCourses;
+                    view.DataMember = "Table";
                 }
                 finally
                 {
