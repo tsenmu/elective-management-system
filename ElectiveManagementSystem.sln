@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectiveManagementSystem", "ElectiveManagementSystem.csproj", "{C97575D9-9B14-4226-A269-59718E8EA76D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectiveManagementSystemTesting", "..\ElectiveManagementSystemTesting\ElectiveManagementSystemTesting.csproj", "{86776585-AED8-47CB-9258-AB3267DFD1D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{C97575D9-9B14-4226-A269-59718E8EA76D}.Debug|x86.Build.0 = Debug|x86
 		{C97575D9-9B14-4226-A269-59718E8EA76D}.Release|x86.ActiveCfg = Release|x86
 		{C97575D9-9B14-4226-A269-59718E8EA76D}.Release|x86.Build.0 = Release|x86
+		{86776585-AED8-47CB-9258-AB3267DFD1D2}.Debug|x86.ActiveCfg = Debug|x86
+		{86776585-AED8-47CB-9258-AB3267DFD1D2}.Debug|x86.Build.0 = Debug|x86
+		{86776585-AED8-47CB-9258-AB3267DFD1D2}.Release|x86.ActiveCfg = Release|x86
+		{86776585-AED8-47CB-9258-AB3267DFD1D2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

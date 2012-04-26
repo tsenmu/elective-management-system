@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace ElectiveManagementSystem
 {
+    public enum KernelLoadModifier
+    {
+        UNSELECTED_COURSES,
+        SELECTED_COURSES,
+        DEPARTMENT,
+    }
     public class Kernel
     {
         // These members maintained below are forms.
@@ -39,6 +45,12 @@ namespace ElectiveManagementSystem
         /* SelectedCourses */
         private DataSet setSelectedCourses = null;
         private MySqlDataAdapter adpSelectedCourses = null;
+        /* DepartmentNames */
+        private DataSet setDepartmentNames = null;
+        private MySqlDataAdapter adpDepartmentNames = null;
+        /* SearchUnselectedCourses */
+        private DataSet setSearchResults = null;
+        private MySqlDataAdapter adpSearchResults = null;
 
         public Kernel(string server, string database, string userid, string password)
         {
@@ -48,6 +60,7 @@ namespace ElectiveManagementSystem
             loginForm = new LoginForm(this);
             loginForm.Show();
             Utils.DecodeTime("");
+            Console.WriteLine("Kernel started");
         }
         private void InitConnection(string server, string database, string userid, string password)
         {
@@ -179,12 +192,13 @@ namespace ElectiveManagementSystem
             Application.Exit();
         }
 
-        public void Load(string modifier, DataGridView view)
+        public void Load(KernelLoadModifier modifier, Control control)
         {
-            if(modifier.Equals("UNSELECTED_COURSES") )
+            if(modifier == KernelLoadModifier.UNSELECTED_COURSES)
             {
                 try
                 {
+                    DataGridView view = (DataGridView)control;
                     conn = getConnection();
                     //conn.Open();
                     cmd = new MySqlCommand(
@@ -195,6 +209,10 @@ namespace ElectiveManagementSystem
                     if (setUnselectedCourses == null)
                     {
                         setUnselectedCourses = new DataSet();
+                    }
+                    else
+                    {
+                        setUnselectedCourses.Clear();
                     }
                     if (adpUnselectedCourses == null)
                     {
@@ -208,13 +226,14 @@ namespace ElectiveManagementSystem
                 }
                 finally
                 {
-                  //  if(co
+                  
                 }
             }
-            else if(modifier.Equals("SELECTED_COURSES"))
+            else if(modifier == KernelLoadModifier.SELECTED_COURSES)
             {
                 try
                 {
+                    DataGridView view = (DataGridView)control;
                     conn = getConnection();
                     //conn.Open();
                     cmd = new MySqlCommand(
@@ -225,6 +244,10 @@ namespace ElectiveManagementSystem
                     if (setSelectedCourses == null)
                     {
                         setSelectedCourses = new DataSet();
+                    }
+                    else
+                    {
+                        setSelectedCourses.Clear();
                     }
                     if (adpSelectedCourses == null)
                     {
@@ -239,7 +262,75 @@ namespace ElectiveManagementSystem
                 {
                 }
             }
+            else if (modifier == KernelLoadModifier.DEPARTMENT)
+            {
+                
+                try
+                {
+                    ComboBox comboBox = (ComboBox)control;
+                    conn = getConnection();
+                    //conn.Open();
+                    cmd = new MySqlCommand(
+                        "getDepartmentNames", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (setDepartmentNames == null)
+                    {
+                        setDepartmentNames = new DataSet();
+                    }
+                    else
+                    {
+                        setDepartmentNames.Clear();
+                    }
+                    if (adpDepartmentNames == null)
+                    {
+                        adpDepartmentNames = new MySqlDataAdapter(
+                            cmd);
+                    }
+                    adpDepartmentNames.Fill(setDepartmentNames);
+                    comboBox.DataSource = setDepartmentNames.Tables["Table"];
+                    comboBox.DisplayMember = "department_name";
+                }
+                finally
+                {
+                }
+            }
         }
-        
+
+        public void Search(string courseID, string courseName, string department, DataGridView view)
+        {
+            try
+            {
+                conn = getConnection();
+                //conn.Open();
+                cmd = new MySqlCommand(
+                    "searchUnselectedCourses", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("@course_id", courseID));
+                cmd.Parameters.Add(new MySqlParameter("@course_name", courseName));
+                cmd.Parameters.Add(new MySqlParameter("@department_name", department));
+                if (setSearchResults == null)
+                {
+                    setSearchResults = new DataSet();
+                }
+                else
+                {
+                    setSearchResults.Clear();
+                }
+                if (adpSearchResults == null)
+                {
+                    adpSearchResults = new MySqlDataAdapter(
+                        cmd);
+                }
+                adpUnselectedCourses.Fill(setSearchResults);
+                //  setUnselectedCourses.Tables.
+                view.DataSource = setSearchResults;
+                view.DataMember = "Table";
+            }
+            finally
+            {
+
+            }
+        }
     }
 }

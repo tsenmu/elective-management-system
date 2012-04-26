@@ -30,7 +30,7 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_electiveManagement = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox_department = new System.Windows.Forms.ComboBox();
             this.label_courseDepartment = new System.Windows.Forms.Label();
             this.textBox_courseName = new System.Windows.Forms.TextBox();
             this.label_courseName = new System.Windows.Forms.Label();
@@ -40,22 +40,22 @@
             this.label_unselectedCourses = new System.Windows.Forms.Label();
             this.label_SelectedCourses = new System.Windows.Forms.Label();
             this.dataGridView_unselectedCourses = new System.Windows.Forms.DataGridView();
-            this.dataGridView_selectedCourses = new System.Windows.Forms.DataGridView();
-            this.tabPage_schedule = new System.Windows.Forms.TabPage();
-            this.dataGridView_schedule = new System.Windows.Forms.DataGridView();
-            this.tabPage_information = new System.Windows.Forms.TabPage();
-            this.s_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s_course = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s_department = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s_room = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.s_detail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.u_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.u_course = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.u_department = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.u_room = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.u_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.u_detail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_selectedCourses = new System.Windows.Forms.DataGridView();
+            this.s_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s_course = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s_department = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s_room = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.s_detail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage_schedule = new System.Windows.Forms.TabPage();
+            this.dataGridView_schedule = new System.Windows.Forms.DataGridView();
+            this.tabPage_information = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabPage_electiveManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).BeginInit();
@@ -77,7 +77,7 @@
             // 
             // tabPage_electiveManagement
             // 
-            this.tabPage_electiveManagement.Controls.Add(this.comboBox1);
+            this.tabPage_electiveManagement.Controls.Add(this.comboBox_department);
             this.tabPage_electiveManagement.Controls.Add(this.label_courseDepartment);
             this.tabPage_electiveManagement.Controls.Add(this.textBox_courseName);
             this.tabPage_electiveManagement.Controls.Add(this.label_courseName);
@@ -96,13 +96,14 @@
             this.tabPage_electiveManagement.Text = "选课退课";
             this.tabPage_electiveManagement.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // comboBox_department
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(480, 218);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 10;
+            this.comboBox_department.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_department.FormattingEnabled = true;
+            this.comboBox_department.Location = new System.Drawing.Point(480, 218);
+            this.comboBox_department.Name = "comboBox_department";
+            this.comboBox_department.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_department.TabIndex = 10;
             // 
             // label_courseDepartment
             // 
@@ -153,6 +154,7 @@
             this.button_search.TabIndex = 4;
             this.button_search.Text = "搜索";
             this.button_search.UseVisualStyleBackColor = true;
+            this.button_search.Click += new System.EventHandler(this.button_search_Click);
             // 
             // label_unselectedCourses
             // 
@@ -187,91 +189,8 @@
             this.dataGridView_unselectedCourses.RowTemplate.Height = 23;
             this.dataGridView_unselectedCourses.Size = new System.Drawing.Size(781, 335);
             this.dataGridView_unselectedCourses.TabIndex = 1;
+            this.dataGridView_unselectedCourses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_unselectedCourses_CellFormatting);
             this.dataGridView_unselectedCourses.SelectionChanged += new System.EventHandler(this.dataGridView_unselectedCourses_SelectionChanged);
-            // 
-            // dataGridView_selectedCourses
-            // 
-            this.dataGridView_selectedCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_selectedCourses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.s_id,
-            this.s_course,
-            this.s_department,
-            this.s_room,
-            this.s_time,
-            this.s_detail});
-            this.dataGridView_selectedCourses.Location = new System.Drawing.Point(6, 24);
-            this.dataGridView_selectedCourses.Name = "dataGridView_selectedCourses";
-            this.dataGridView_selectedCourses.RowTemplate.Height = 23;
-            this.dataGridView_selectedCourses.Size = new System.Drawing.Size(781, 186);
-            this.dataGridView_selectedCourses.TabIndex = 0;
-            this.dataGridView_selectedCourses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_selectedCourses_CellFormatting);
-            this.dataGridView_selectedCourses.SelectionChanged += new System.EventHandler(this.dataGridView_selectedCourses_SelectionChanged);
-            // 
-            // tabPage_schedule
-            // 
-            this.tabPage_schedule.Controls.Add(this.dataGridView_schedule);
-            this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
-            this.tabPage_schedule.Name = "tabPage_schedule";
-            this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_schedule.Size = new System.Drawing.Size(793, 585);
-            this.tabPage_schedule.TabIndex = 1;
-            this.tabPage_schedule.Text = "课表";
-            this.tabPage_schedule.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_schedule
-            // 
-            this.dataGridView_schedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_schedule.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView_schedule.Name = "dataGridView_schedule";
-            this.dataGridView_schedule.RowTemplate.Height = 23;
-            this.dataGridView_schedule.Size = new System.Drawing.Size(781, 573);
-            this.dataGridView_schedule.TabIndex = 0;
-            // 
-            // tabPage_information
-            // 
-            this.tabPage_information.Location = new System.Drawing.Point(4, 21);
-            this.tabPage_information.Name = "tabPage_information";
-            this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_information.Size = new System.Drawing.Size(793, 585);
-            this.tabPage_information.TabIndex = 2;
-            this.tabPage_information.Text = "个人信息";
-            this.tabPage_information.UseVisualStyleBackColor = true;
-            // 
-            // s_id
-            // 
-            this.s_id.DataPropertyName = "id";
-            this.s_id.HeaderText = "课程编号";
-            this.s_id.Name = "s_id";
-            // 
-            // s_course
-            // 
-            this.s_course.DataPropertyName = "course";
-            this.s_course.HeaderText = "课程名称";
-            this.s_course.Name = "s_course";
-            // 
-            // s_department
-            // 
-            this.s_department.DataPropertyName = "department";
-            this.s_department.HeaderText = "开课院所";
-            this.s_department.Name = "s_department";
-            // 
-            // s_room
-            // 
-            this.s_room.DataPropertyName = "room";
-            this.s_room.HeaderText = "上课地点";
-            this.s_room.Name = "s_room";
-            // 
-            // s_time
-            // 
-            this.s_time.DataPropertyName = "time";
-            this.s_time.HeaderText = "上课时间";
-            this.s_time.Name = "s_time";
-            // 
-            // s_detail
-            // 
-            this.s_detail.DataPropertyName = "detail";
-            this.s_detail.HeaderText = "备注";
-            this.s_detail.Name = "s_detail";
             // 
             // u_id
             // 
@@ -309,6 +228,90 @@
             this.u_detail.HeaderText = "备注";
             this.u_detail.Name = "u_detail";
             // 
+            // dataGridView_selectedCourses
+            // 
+            this.dataGridView_selectedCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_selectedCourses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.s_id,
+            this.s_course,
+            this.s_department,
+            this.s_room,
+            this.s_time,
+            this.s_detail});
+            this.dataGridView_selectedCourses.Location = new System.Drawing.Point(6, 24);
+            this.dataGridView_selectedCourses.Name = "dataGridView_selectedCourses";
+            this.dataGridView_selectedCourses.RowTemplate.Height = 23;
+            this.dataGridView_selectedCourses.Size = new System.Drawing.Size(781, 186);
+            this.dataGridView_selectedCourses.TabIndex = 0;
+            this.dataGridView_selectedCourses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_selectedCourses_CellFormatting);
+            this.dataGridView_selectedCourses.SelectionChanged += new System.EventHandler(this.dataGridView_selectedCourses_SelectionChanged);
+            // 
+            // s_id
+            // 
+            this.s_id.DataPropertyName = "id";
+            this.s_id.HeaderText = "课程编号";
+            this.s_id.Name = "s_id";
+            // 
+            // s_course
+            // 
+            this.s_course.DataPropertyName = "course";
+            this.s_course.HeaderText = "课程名称";
+            this.s_course.Name = "s_course";
+            // 
+            // s_department
+            // 
+            this.s_department.DataPropertyName = "department";
+            this.s_department.HeaderText = "开课院所";
+            this.s_department.Name = "s_department";
+            // 
+            // s_room
+            // 
+            this.s_room.DataPropertyName = "room";
+            this.s_room.HeaderText = "上课地点";
+            this.s_room.Name = "s_room";
+            // 
+            // s_time
+            // 
+            this.s_time.DataPropertyName = "time";
+            this.s_time.HeaderText = "上课时间";
+            this.s_time.Name = "s_time";
+            // 
+            // s_detail
+            // 
+            this.s_detail.DataPropertyName = "detail";
+            this.s_detail.HeaderText = "备注";
+            this.s_detail.Name = "s_detail";
+            // 
+            // tabPage_schedule
+            // 
+            this.tabPage_schedule.Controls.Add(this.dataGridView_schedule);
+            this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_schedule.Name = "tabPage_schedule";
+            this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_schedule.Size = new System.Drawing.Size(793, 585);
+            this.tabPage_schedule.TabIndex = 1;
+            this.tabPage_schedule.Text = "课表";
+            this.tabPage_schedule.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_schedule
+            // 
+            this.dataGridView_schedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_schedule.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView_schedule.Name = "dataGridView_schedule";
+            this.dataGridView_schedule.RowTemplate.Height = 23;
+            this.dataGridView_schedule.Size = new System.Drawing.Size(781, 573);
+            this.dataGridView_schedule.TabIndex = 0;
+            // 
+            // tabPage_information
+            // 
+            this.tabPage_information.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_information.Name = "tabPage_information";
+            this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_information.Size = new System.Drawing.Size(793, 585);
+            this.tabPage_information.TabIndex = 2;
+            this.tabPage_information.Text = "个人信息";
+            this.tabPage_information.UseVisualStyleBackColor = true;
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -337,7 +340,7 @@
         private System.Windows.Forms.TabPage tabPage_schedule;
         private System.Windows.Forms.DataGridView dataGridView_selectedCourses;
         private System.Windows.Forms.DataGridView dataGridView_unselectedCourses;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox_department;
         private System.Windows.Forms.Label label_courseDepartment;
         private System.Windows.Forms.TextBox textBox_courseName;
         private System.Windows.Forms.Label label_courseName;

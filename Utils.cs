@@ -28,17 +28,15 @@ namespace ElectiveManagementSystem
         public static string DecodeTime(string time)
         {
             StringBuilder sb = new StringBuilder();
-            char[] sep_sc = { ';' };
-            char[] sep_cm = { ',' };
+            char[] sep_sc = { ',' };
+            char[] sep_cm = { '.' };
             string[] separated_strings = time.Split(sep_sc);
             
             for (int i = 0; i < separated_strings.Length; ++i)
             {
-                //MessageBox.Show(separated_strings[i]);
                 string str = separated_strings[i];
                 string[] res_str = str.Split(sep_cm);
                 
-                //MessageBox.Show(res_str.Length.ToString());
                 if (res_str.Length == 2)
                 {
                     bool succeeded = true;
@@ -52,31 +50,63 @@ namespace ElectiveManagementSystem
                             switch (weekday)
                             {
                                 case 1:
-                                    weekday_str = "星期一";
+                                    weekday_str = "一";
                                     break;
                                 case 2:
-                                    weekday_str = "星期二";
+                                    weekday_str = "二";
                                     break;
                                 case 3:
-                                    weekday_str = "星期三";
+                                    weekday_str = "三";
                                     break;
                                 case 4:
-                                    weekday_str = "星期四";
+                                    weekday_str = "四";
                                     break;
                                 case 5:
-                                    weekday_str = "星期五";
+                                    weekday_str = "五";
                                     break;
                                 case 6:
-                                    weekday_str = "星期六";
+                                    weekday_str = "六";
                                     break;
                                 case 7:
-                                    weekday_str = "星期日";
+                                    weekday_str = "日";
                                     break;
                                 default:
                                     weekday_str = "{ERROR_WEEKDAY}";
                                     break;
                             }
-                            sb.Append(weekday_str + "第" + section + "节");
+                            sb.Append("周" + weekday_str);
+                            string section_str;
+                            switch (section)
+                            {
+                                case 1:
+                                    section_str = "一";
+                                    break;
+                                case 2:
+                                    section_str = "二";
+                                    break;
+                                case 3:
+                                    section_str = "三";
+                                    break;
+                                case 4:
+                                    section_str = "四";
+                                    break;
+                                case 5:
+                                    section_str = "五";
+                                    break;
+                                case 6:
+                                    section_str = "六";
+                                    break;
+                                case 7:
+                                    section_str = "七";
+                                    break;
+                                case 8:
+                                    section_str = "八";
+                                    break;
+                                default:
+                                    section_str = "{ERROR_SECTION}";
+                                    break;
+                            }
+                            sb.Append("第" + section_str + "节");
                         }
                     }
                     catch (Exception e)
@@ -93,7 +123,6 @@ namespace ElectiveManagementSystem
                     sb.Append(", ");
                 }
             }
-           // MessageBox.Show(sb.ToString());
             return sb.ToString();
         }
     }

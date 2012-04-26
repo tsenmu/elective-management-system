@@ -37,8 +37,9 @@ namespace ElectiveManagementSystem
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            kernel.Load("UNSELECTED_COURSES", dataGridView_unselectedCourses);
-            kernel.Load("SELECTED_COURSES", dataGridView_selectedCourses);
+            kernel.Load(KernelLoadModifier.UNSELECTED_COURSES, dataGridView_unselectedCourses);
+            kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
+            kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
         }
 
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -67,10 +68,24 @@ namespace ElectiveManagementSystem
          
             if (dataGridView_selectedCourses.Columns[e.ColumnIndex].HeaderText == "上课时间")
             {
-                MessageBox.Show((string)e.Value);
                 e.Value = Utils.DecodeTime(e.Value.ToString());
             }
         }
+
+        private void dataGridView_unselectedCourses_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView_selectedCourses.Columns[e.ColumnIndex].HeaderText == "上课时间")
+            {
+                e.Value = Utils.DecodeTime(e.Value.ToString());
+            }
+        }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+            kernel.Search(textBox_courseID.Text, textBox_courseName.Text, comboBox_department.SelectedText, dataGridView_unselectedCourses);
+        }
+
+       
 
     }
 }
