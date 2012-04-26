@@ -18,7 +18,7 @@ namespace ElectiveManagementSystem
             Application.SetCompatibleTextRenderingDefault(false);
             Kernel console = new Kernel("localhost", "elecdb", "root", "");
             Application.Run();
+            
         }
-        
     }
 }
