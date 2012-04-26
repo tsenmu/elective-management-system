@@ -16,7 +16,7 @@ namespace ElectiveManagementSystem
         SELECTED_COURSES,
         DEPARTMENT,
     }
-    public class Kernel
+    public partial class Kernel
     {
         // These members maintained below are forms.
         private AdminForm adminForm;
@@ -179,15 +179,15 @@ namespace ElectiveManagementSystem
         {
             if (loginForm != null)
             {
-                loginForm.Close();
+                loginForm.Dispose();
             }
             if (adminForm != null)
             {
-                adminForm.Close();
+                adminForm.Dispose();
             }
             if (userForm != null)
             {
-                userForm.Close();
+                userForm.Dispose();
             }
             Application.Exit();
         }
@@ -214,11 +214,8 @@ namespace ElectiveManagementSystem
                     {
                         setUnselectedCourses.Clear();
                     }
-                    if (adpUnselectedCourses == null)
-                    {
-                        adpUnselectedCourses = new MySqlDataAdapter(
+                    adpUnselectedCourses = new MySqlDataAdapter(
                             cmd);
-                    }
                     adpUnselectedCourses.Fill(setUnselectedCourses);
                   //  setUnselectedCourses.Tables.
                     view.DataSource = setUnselectedCourses;
@@ -249,11 +246,9 @@ namespace ElectiveManagementSystem
                     {
                         setSelectedCourses.Clear();
                     }
-                    if (adpSelectedCourses == null)
-                    {
-                        adpSelectedCourses = new MySqlDataAdapter(
+                    adpSelectedCourses = new MySqlDataAdapter(
                             cmd);
-                    }
+                    
                     adpSelectedCourses.Fill(setSelectedCourses);
                     view.DataSource = setSelectedCourses;
                     view.DataMember = "Table";
@@ -282,11 +277,9 @@ namespace ElectiveManagementSystem
                     {
                         setDepartmentNames.Clear();
                     }
-                    if (adpDepartmentNames == null)
-                    {
-                        adpDepartmentNames = new MySqlDataAdapter(
+                    adpDepartmentNames = new MySqlDataAdapter(
                             cmd);
-                    }
+                    
                     adpDepartmentNames.Fill(setDepartmentNames);
                     comboBox.DataSource = setDepartmentNames.Tables["Table"];
                     comboBox.DisplayMember = "department_name";
@@ -301,14 +294,15 @@ namespace ElectiveManagementSystem
         {
             try
             {
+                MessageBox.Show(department);
                 conn = getConnection();
-                //conn.Open();
                 cmd = new MySqlCommand(
                     "searchUnselectedCourses", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new MySqlParameter("@course_id", courseID));
+                cmd.Parameters.Add(new  MySqlParameter("@course_id", courseID));
                 cmd.Parameters.Add(new MySqlParameter("@course_name", courseName));
                 cmd.Parameters.Add(new MySqlParameter("@department_name", department));
+                cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
                 if (setSearchResults == null)
                 {
                     setSearchResults = new DataSet();
@@ -317,13 +311,9 @@ namespace ElectiveManagementSystem
                 {
                     setSearchResults.Clear();
                 }
-                if (adpSearchResults == null)
-                {
-                    adpSearchResults = new MySqlDataAdapter(
-                        cmd);
-                }
-                adpUnselectedCourses.Fill(setSearchResults);
-                //  setUnselectedCourses.Tables.
+
+                adpSearchResults = new MySqlDataAdapter(cmd);
+                adpSearchResults.Fill(setSearchResults);
                 view.DataSource = setSearchResults;
                 view.DataMember = "Table";
             }

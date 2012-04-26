@@ -82,7 +82,7 @@ namespace ElectiveManagementSystem
 
         private void button_search_Click(object sender, EventArgs e)
         {
-            kernel.Search(textBox_courseID.Text, textBox_courseName.Text, comboBox_department.SelectedText, dataGridView_unselectedCourses);
+            kernel.Search(textBox_courseID.Text, textBox_courseName.Text, comboBox_department.Text, dataGridView_unselectedCourses);
         }
 
        
