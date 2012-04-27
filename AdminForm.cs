@@ -55,7 +55,7 @@ namespace ElectiveManagementSystem
         private void dataGridView_system_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView_system.Columns[e.ColumnIndex].HeaderText == "选课系统开关")
-                ;
+            { }
         }
 
         private void addCourseButton_Click(object sender, EventArgs e)

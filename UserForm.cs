@@ -39,6 +39,7 @@ namespace ElectiveManagementSystem
             kernel.Load(KernelLoadModifier.UNSELECTED_COURSES, dataGridView_unselectedCourses);
             kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
             kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
+            kernel.Load(KernelLoadModifier.PERSONAL_INFORMATION, new PersonelInformation(label_name, label_ID, label_department));
         }
 
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -68,7 +69,7 @@ namespace ElectiveManagementSystem
         {
             if (isLastCommandSearch)
             {
-                kernel.Search(sc.searching_cache_courseID, sc.searching_cache_courseName, sc.searching_cache_department, dataGridView_unselectedCourses);
+                kernel.Search(sc.courseID, sc.courseName, sc.department, dataGridView_unselectedCourses);
                 kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
                 kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
             }
@@ -92,6 +93,21 @@ namespace ElectiveManagementSystem
         private void button_add_Click(object sender, EventArgs e)
         {
             kernel.SelectCourse(dataGridView_unselectedCourses);
+        }
+
+        private void button_confirm_Click(object sender, EventArgs e)
+        {
+            kernel.ChangePassword(new PasswordInformation
+                (textBox_oldPassword,
+                textBox_newPassword,
+                textBox_newPasswordConfirm));
+        }
+
+        private void button_reset_Click(object sender, EventArgs e)
+        {
+            textBox_oldPassword.Clear();
+            textBox_newPassword.Clear();
+            textBox_newPasswordConfirm.Clear();
         }
 
        

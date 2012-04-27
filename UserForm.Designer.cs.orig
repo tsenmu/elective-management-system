@@ -59,6 +59,7 @@
             this.tabPage_schedule = new System.Windows.Forms.TabPage();
             this.dataGridView_schedule = new System.Windows.Forms.DataGridView();
             this.tabPage_information = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
             this.groupBox_information = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label_ro_ID = new System.Windows.Forms.Label();
@@ -75,6 +76,8 @@
             this.textBox_newPasswordConfirm = new System.Windows.Forms.TextBox();
             this.button_confirm = new System.Windows.Forms.Button();
             this.button_reset = new System.Windows.Forms.Button();
+=======
+>>>>>>> 167c2d7c23588c29c45104c8d500e0c4c92cd53e
             this.tabControl.SuspendLayout();
             this.tabPage_electiveManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).BeginInit();
@@ -112,10 +115,10 @@
             this.tabPage_electiveManagement.Controls.Add(this.label_SelectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_unselectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_selectedCourses);
-            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 22);
             this.tabPage_electiveManagement.Name = "tabPage_electiveManagement";
             this.tabPage_electiveManagement.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 607);
+            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 606);
             this.tabPage_electiveManagement.TabIndex = 0;
             this.tabPage_electiveManagement.Text = "选课退课";
             this.tabPage_electiveManagement.UseVisualStyleBackColor = true;
@@ -229,7 +232,6 @@
             this.u_time,
             this.u_detail});
             this.dataGridView_unselectedCourses.Location = new System.Drawing.Point(6, 271);
-            this.dataGridView_unselectedCourses.MultiSelect = false;
             this.dataGridView_unselectedCourses.Name = "dataGridView_unselectedCourses";
             this.dataGridView_unselectedCourses.RowTemplate.Height = 23;
             this.dataGridView_unselectedCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -284,7 +286,6 @@
             this.s_time,
             this.s_detail});
             this.dataGridView_selectedCourses.Location = new System.Drawing.Point(6, 24);
-            this.dataGridView_selectedCourses.MultiSelect = false;
             this.dataGridView_selectedCourses.Name = "dataGridView_selectedCourses";
             this.dataGridView_selectedCourses.RowTemplate.Height = 23;
             this.dataGridView_selectedCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -331,10 +332,14 @@
             // tabPage_schedule
             // 
             this.tabPage_schedule.Controls.Add(this.dataGridView_schedule);
-            this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_schedule.Location = new System.Drawing.Point(4, 22);
             this.tabPage_schedule.Name = "tabPage_schedule";
             this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
+<<<<<<< HEAD
             this.tabPage_schedule.Size = new System.Drawing.Size(793, 607);
+=======
+            this.tabPage_schedule.Size = new System.Drawing.Size(793, 606);
+>>>>>>> 167c2d7c23588c29c45104c8d500e0c4c92cd53e
             this.tabPage_schedule.TabIndex = 1;
             this.tabPage_schedule.Text = "课表";
             this.tabPage_schedule.UseVisualStyleBackColor = true;
@@ -350,16 +355,24 @@
             // 
             // tabPage_information
             // 
+<<<<<<< HEAD
             this.tabPage_information.Controls.Add(this.groupBox2);
             this.tabPage_information.Controls.Add(this.groupBox_information);
             this.tabPage_information.Location = new System.Drawing.Point(4, 21);
             this.tabPage_information.Name = "tabPage_information";
             this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_information.Size = new System.Drawing.Size(793, 607);
+=======
+            this.tabPage_information.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_information.Name = "tabPage_information";
+            this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_information.Size = new System.Drawing.Size(793, 606);
+>>>>>>> 167c2d7c23588c29c45104c8d500e0c4c92cd53e
             this.tabPage_information.TabIndex = 2;
             this.tabPage_information.Text = "个人设置";
             this.tabPage_information.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // groupBox_information
             // 
             this.groupBox_information.Controls.Add(this.label_department);
@@ -479,7 +492,6 @@
             this.textBox_oldPassword.Name = "textBox_oldPassword";
             this.textBox_oldPassword.Size = new System.Drawing.Size(100, 21);
             this.textBox_oldPassword.TabIndex = 3;
-            this.textBox_oldPassword.UseSystemPasswordChar = true;
             // 
             // textBox_newPassword
             // 
@@ -487,7 +499,6 @@
             this.textBox_newPassword.Name = "textBox_newPassword";
             this.textBox_newPassword.Size = new System.Drawing.Size(100, 21);
             this.textBox_newPassword.TabIndex = 4;
-            this.textBox_newPassword.UseSystemPasswordChar = true;
             // 
             // textBox_newPasswordConfirm
             // 
@@ -495,7 +506,6 @@
             this.textBox_newPasswordConfirm.Name = "textBox_newPasswordConfirm";
             this.textBox_newPasswordConfirm.Size = new System.Drawing.Size(100, 21);
             this.textBox_newPasswordConfirm.TabIndex = 5;
-            this.textBox_newPasswordConfirm.UseSystemPasswordChar = true;
             // 
             // button_confirm
             // 
@@ -505,7 +515,6 @@
             this.button_confirm.TabIndex = 6;
             this.button_confirm.Text = "确认更改";
             this.button_confirm.UseVisualStyleBackColor = true;
-            this.button_confirm.Click += new System.EventHandler(this.button_confirm_Click);
             // 
             // button_reset
             // 
@@ -515,8 +524,9 @@
             this.button_reset.TabIndex = 7;
             this.button_reset.Text = "重置";
             this.button_reset.UseVisualStyleBackColor = true;
-            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
             // 
+=======
+>>>>>>> 167c2d7c23588c29c45104c8d500e0c4c92cd53e
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
