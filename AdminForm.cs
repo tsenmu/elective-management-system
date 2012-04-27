@@ -23,6 +23,10 @@ namespace ElectiveManagementSystem
         {
             kernel.Load(KernelLoadModifier.STUDENT, dataGridView_student);
             kernel.Load(KernelLoadModifier.ALL_COURSES, dataGridView_allCourses);
+            kernel.Load(KernelLoadModifier.SYSTEM, dataGridView_system);
+            kernel.Load(KernelLoadModifier.COLUMN_ROOM, dataGridView_allCourses.Columns["room"]);
+            kernel.Load(KernelLoadModifier.COLUMN_DEPARTMENT, dataGridView_allCourses.Columns["department_course"]);
+            kernel.Load(KernelLoadModifier.COLUMN_DEPARTMENT, dataGridView_allCourses.Columns["department"]);
         }
 
         private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -39,8 +43,41 @@ namespace ElectiveManagementSystem
         {
             if (dataGridView_allCourses.Columns[e.ColumnIndex].HeaderText == "上课时间")
             {
-                //e.Value = Utils.DecodeTime(e.Value.ToString());
+                if (e.Value != null)
+                    e.Value = Utils.DecodeTime(e.Value.ToString());
+            }
+            else if (dataGridView_allCourses.Columns[e.ColumnIndex].HeaderText == "开课院所")
+            {
+                
             }
         }
+
+        private void dataGridView_system_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView_system.Columns[e.ColumnIndex].HeaderText == "选课系统开关")
+                ;
+        }
+
+        private void addCourseButton_Click(object sender, EventArgs e)
+        {
+            //string cid = InputBox(message, title, defaultValue);
+            
+        }
+
+        private void dataGridView_allCourses_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.ALL_COURSES);
+        }
+
+        private void dataGridView_student_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.STUDENT);
+        }
+
+        private void dataGridView_allCourses_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.ALL_COURSES);
+        }
+
     }
 }

@@ -18,8 +18,6 @@ namespace ElectiveManagementSystem
         STUDENT,
         ALL_COURSES,
         SYSTEM,
-        COLUMN_DEPARTMENT,
-        COLUMN_ROOM,
     }
 
     public class SearchingCache
@@ -76,22 +74,24 @@ namespace ElectiveManagementSystem
         /*StudentList*/
         private DataSet setStudentList = null;
         private MySqlDataAdapter adpStudentList = null;
-        private MySqlCommandBuilder studentListCommandBuilder = null;
         /*All Courses*/
         private DataSet setAllCourses = null;
         private MySqlDataAdapter adpAllCourses = null;
+<<<<<<< HEAD
+        private MySqlCommand addCourseCommand = null;
+        private MySqlCommand removeCourseCommand = null;
+        private MySqlCommand updateCourseCommand = null;
         private MySqlCommandBuilder courseCommandBuilder = null;
         /*SYSTEM*/
         private DataSet setSystem = null;
         private MySqlDataAdapter adpSystem = null;
-        /*Column_department*/
-        private DataSet setColumnDepartment = null;
-        private MySqlDataAdapter adpColumnDepartment = null;
-        /*Column_Room*/
-        private DataSet setColumnRoom = null;
-        private MySqlDataAdapter adpColumnRoom = null;
-         /* Searching cache */
+=======
+
+
+        /* Searching cache */
         private SearchingCache searchingCache;
+
+>>>>>>> 7f1bba6cce6d31e1d6214e7e0ff8330df83888e6
 
         public Kernel(string server, string database, string userid, string password)
         {
@@ -232,7 +232,7 @@ namespace ElectiveManagementSystem
             Application.Exit();
         }
 
-        public void Load(KernelLoadModifier modifier, Object control)
+        public void Load(KernelLoadModifier modifier, Control control)
         {
             if(modifier == KernelLoadModifier.UNSELECTED_COURSES)
             {
@@ -334,7 +334,10 @@ namespace ElectiveManagementSystem
                 {
                     DataGridView view = (DataGridView)control;
                     conn = getConnection();
-                    cmd = new MySqlCommand("SELECT * FROM Student;", conn);
+                    cmd = new MySqlCommand(
+                        "getStudentList", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     if (setStudentList == null)
                     {
                         setStudentList = new DataSet();
@@ -348,7 +351,6 @@ namespace ElectiveManagementSystem
                         adpStudentList = new MySqlDataAdapter(
                             cmd);
                     }
-                    studentListCommandBuilder = new MySqlCommandBuilder(adpStudentList);
                     adpStudentList.Fill(setStudentList);
                     view.DataSource = setStudentList;
                     view.DataMember = "Table";
@@ -363,15 +365,17 @@ namespace ElectiveManagementSystem
                 {
                     DataGridView view = (DataGridView)control;
                     conn = getConnection();
-                    cmd = new MySqlCommand("SELECT * FROM course;", conn);
+                    cmd = new MySqlCommand(
+                        "getAllCourses", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     if (setAllCourses == null)
                         setAllCourses = new DataSet();
                     else
                         setAllCourses.Clear();
                     if (adpAllCourses == null)
                         adpAllCourses = new MySqlDataAdapter(cmd);
-                    courseCommandBuilder = new MySqlCommandBuilder(adpAllCourses);
                     adpAllCourses.Fill(setAllCourses);
+                    courseCommandBuilder = new MySqlCommandBuilder(adpAllCourses);
                     view.DataSource = setAllCourses;
                     view.DataMember = "Table";
                 }
@@ -394,51 +398,13 @@ namespace ElectiveManagementSystem
                 view.DataSource = setSystem;
                 view.DataMember = "Table";
             }
-            else if (modifier == KernelLoadModifier.COLUMN_DEPARTMENT)
-            {
-                DataGridViewComboBoxColumn cb = (DataGridViewComboBoxColumn)control;
-                conn = getConnection();
-                cmd = new MySqlCommand("select * from department;", conn);
-                if (setColumnDepartment == null)
-                    setColumnDepartment = new DataSet();
-                else
-                    setColumnDepartment.Clear();
-                if (adpColumnDepartment == null)
-                    adpColumnDepartment = new MySqlDataAdapter(cmd);
-                adpColumnDepartment.Fill(setColumnDepartment);
-                cb.DataSource = setColumnDepartment;
-                //cb.DataPropertyName = "rid";
-                cb.ValueMember = "Table.did";
-                cb.DisplayMember = "Table.name";
-            }
-            else if (modifier == KernelLoadModifier.COLUMN_ROOM)
-            {
-                DataGridViewComboBoxColumn cb = (DataGridViewComboBoxColumn)control;
-                conn = getConnection();
-                cmd = new MySqlCommand("select * from room;", conn);
-                if (setColumnRoom == null)
-                    setColumnRoom = new DataSet();
-                else
-                    setColumnRoom.Clear();
-                if (adpColumnRoom == null)
-                    adpColumnRoom = new MySqlDataAdapter(cmd);
-                adpColumnRoom.Fill(setColumnRoom);
-                MessageBox.Show(setColumnRoom.GetXml());
-                cb.DataSource = setColumnRoom;
-                cb.ValueMember = "Table.rid";
-                cb.DisplayMember = "Table.name";
-            }
         }
-        
+
         public void update(KernelLoadModifier modifier)
         {
             if (modifier == KernelLoadModifier.ALL_COURSES)
             {
                 adpAllCourses.Update(setAllCourses);
-            }
-            if (modifier == KernelLoadModifier.STUDENT)
-            {
-                adpStudentList.Update(setStudentList);
             }
         }
 
@@ -475,6 +441,18 @@ namespace ElectiveManagementSystem
 
             }
         }
+<<<<<<< HEAD
+        public void addCourses(String cid, String name, String time, String detail, String rid, String credit, String department)
+        {
+            addCourseCommand = new MySqlCommand("INSERT INTO course VALUES (@cid, @name, @time, @detail, @rid, @credit, did) where (select * from department where @department = department.name)");
+            addCourseCommand.Parameters.Add("@cid", cid);
+            addCourseCommand.Parameters.Add("@name", name);
+            addCourseCommand.Parameters.Add("@detail", detail);
+            addCourseCommand.Parameters.Add("@rid", rid);
+            addCourseCommand.Parameters.Add("@credit", credit);
+            addCourseCommand.Parameters.Add("@department", department);
+
+=======
 
         private void FillSearchingCache(string courseID, string courseName, string department, DataGridView view)
         {
@@ -549,17 +527,7 @@ namespace ElectiveManagementSystem
                 }
                 ReloadUserForm();
             }
-        }
-        public void addCourses(String cid, String name, String time, String detail, String rid, String credit, String department)
-        {
-            /*addCourseCommand = new MySqlCommand("INSERT INTO course VALUES (@cid, @name, @time, @detail, @rid, @credit, did) where (select * from department where @department = department.name)");
-            addCourseCommand.Parameters.Add("@cid", cid);
-            addCourseCommand.Parameters.Add("@name", name);
-            addCourseCommand.Parameters.Add("@detail", detail);
-            addCourseCommand.Parameters.Add("@rid", rid);
-            addCourseCommand.Parameters.Add("@credit", credit);
-            addCourseCommand.Parameters.Add("@department", department);*/
-
+>>>>>>> 7f1bba6cce6d31e1d6214e7e0ff8330df83888e6
         }
     }
 }
