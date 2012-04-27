@@ -20,23 +20,51 @@ namespace ElectiveManagementSystem
         SYSTEM,
         COLUMN_DEPARTMENT,
         COLUMN_ROOM,
+        PERSONAL_INFORMATION,
+        PASSWORD_UPDATE
     }
 
     public class SearchingCache
     {
         public SearchingCache()
         {
-            searching_cache_courseID = "";
-            searching_cache_courseName = "";
-            searching_cache_isLastCommandSearch = false;
-            searching_cache_department = "";
-            searching_cache_view = null;
+            courseID = "";
+            courseName = "";
+            isLastCommandSearch = false;
+            department = "";
+            view = null;
         }
-        public string searching_cache_courseID{set; get;}
-        public string searching_cache_courseName { set; get; }
-        public string searching_cache_department { set; get; }
-        public DataGridView searching_cache_view { set; get; }
-        public bool searching_cache_isLastCommandSearch { set; get; }
+        public string courseID{set; get;}
+        public string courseName { set; get; }
+        public string department { set; get; }
+        public DataGridView view { set; get; }
+        public bool isLastCommandSearch { set; get; }
+    }
+
+    public class PersonelInformation
+    {
+        public PersonelInformation(Label ID, Label name, Label department)
+        {
+            this.ID = ID;
+            this.name = name;
+            this.department = department;
+        }
+        public Label ID{set; get;}
+        public Label name{set; get;}
+        public Label department{set; get;}
+    }
+
+    public class PasswordInformation
+    {
+        public PasswordInformation(TextBox oldPassword, TextBox newPassword, TextBox confirm)
+        {
+            this.oldPassword = oldPassword;
+            this.newPassword = newPassword;
+            this.confirm = confirm;
+        }
+        public TextBox oldPassword { set; get; }
+        public TextBox newPassword { set; get; }
+        public TextBox confirm { set; get; }
     }
     public partial class Kernel
     {
@@ -399,7 +427,7 @@ namespace ElectiveManagementSystem
                 Int32 open = Convert.ToInt32(reader[0].ToString());
                 if (open == 0)
                     cb.Checked = false;
-                else
+                else                  
                     cb.Checked = true;
             }
             else if (modifier == KernelLoadModifier.COLUMN_DEPARTMENT)
@@ -433,6 +461,43 @@ namespace ElectiveManagementSystem
                 cb.DataSource = setColumnRoom;
                 cb.ValueMember = "Table.rid";
                 cb.DisplayMember = "Table.name";
+            }
+            else if (modifier == KernelLoadModifier.PERSONAL_INFORMATION)
+            {
+                PersonelInformation info = (PersonelInformation)control;
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand("select student.sid as stuid, student.name as sname, department.name as dname from student join department where sid = @student_id and department.did = student.did;", conn);
+                cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
+                rdr = cmd.ExecuteReader();
+                try
+                {
+                    while (rdr.Read())
+                    {
+
+
+                        info.ID.Text = (string)rdr["stuid"];
+                        info.name.Text = (string)rdr["sname"];
+                        info.department.Text = (string)rdr["dname"];
+                        break;
+
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                    if( rdr != null)
+                    {
+                        rdr.Close();
+                    }
+                }
+
             }
         }
         
@@ -495,18 +560,18 @@ namespace ElectiveManagementSystem
 
         private void FillSearchingCache(string courseID, string courseName, string department, DataGridView view)
         {
-            searchingCache.searching_cache_courseID = courseID;
-            searchingCache.searching_cache_courseName = courseName;
-            searchingCache.searching_cache_department = department;
-            searchingCache.searching_cache_view = view;
-            searchingCache.searching_cache_isLastCommandSearch = true;
+            searchingCache.courseID = courseID;
+            searchingCache.courseName = courseName;
+            searchingCache.department = department;
+            searchingCache.view = view;
+            searchingCache.isLastCommandSearch = true;
         }
 
         private void ReloadUserForm()
         {
             if (userForm != null)
             {
-                userForm.Reload(searchingCache.searching_cache_isLastCommandSearch, searchingCache);
+                userForm.Reload(searchingCache.isLastCommandSearch, searchingCache);
             }
         }
         public void SelectCourse(DataGridView view)
@@ -567,5 +632,95 @@ namespace ElectiveManagementSystem
                 ReloadUserForm();
             }
         }
+        }
+
+        public void ChangePassword(PasswordInformation info)
+        {
+            string oldPassword = info.oldPassword.Text.Trim();
+            string newPassword = info.newPassword.Text.Trim();
+            string confirm = info.confirm.Text.Trim();
+            bool succeeded = false;
+            try {
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand(
+                    "getStudentPassword", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
+                rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    string passwd = (string)rdr["passwd"];
+                    if (Utils.CalculateMD5Hash(oldPassword).Equals(passwd))
+                    {
+                        succeeded = true;
+                        break;
+                    }
+                }
+            } 
+            catch (Exception e)
+            {
+
+            }
+            finally 
+            {
+                if(conn == null)
+                {
+                    conn.Close();
+                }
+                if(rdr == null)
+                {
+                    rdr.Close();
+                }
+
+            }
+            
+            if (succeeded)
+            {
+                //bool empty = false;
+                if (newPassword == "")
+                {
+                    MessageBox.Show("新密码不能为空！");
+                    return;
+                }
+                if (confirm == "")
+                {
+                    MessageBox.Show("新密码验证不能为空！");
+                    return;
+                }
+                if (newPassword != confirm)
+                {
+                    MessageBox.Show("新密码不相符！");
+                    return; 
+                }
+                if (newPassword == confirm)
+                {
+                    try
+                    {
+                        conn = getConnection();
+                        conn.Open();
+                        cmd = new MySqlCommand("update student set passwd = @pass where sid = @student_id", conn);
+                        cmd.Parameters.AddWithValue("@pass", Utils.CalculateMD5Hash(newPassword));
+                        cmd.Parameters.AddWithValue("@student_id", currentUserID);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("修改成功！");
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    finally
+                    {
+                        if (conn != null)
+                        {
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("账号或密码错误！");
+            }
     }
 }
