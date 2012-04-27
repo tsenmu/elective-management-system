@@ -21,7 +21,8 @@ namespace ElectiveManagementSystem
         COLUMN_DEPARTMENT,
         COLUMN_ROOM,
         PERSONAL_INFORMATION,
-        PASSWORD_UPDATE
+        PASSWORD_UPDATE,
+        SCHEDULE,
     }
 
     public class SearchingCache
@@ -34,7 +35,7 @@ namespace ElectiveManagementSystem
             department = "";
             view = null;
         }
-        public string courseID{set; get;}
+        public string courseID { set; get; }
         public string courseName { set; get; }
         public string department { set; get; }
         public DataGridView view { set; get; }
@@ -49,9 +50,9 @@ namespace ElectiveManagementSystem
             this.name = name;
             this.department = department;
         }
-        public Label ID{set; get;}
-        public Label name{set; get;}
-        public Label department{set; get;}
+        public Label ID { set; get; }
+        public Label name { set; get; }
+        public Label department { set; get; }
     }
 
     public class PasswordInformation
@@ -84,10 +85,10 @@ namespace ElectiveManagementSystem
         private string conn_passwd;
 
         /* These members maintained below are for database connections.*/
-        private MySqlConnection  conn = null;
+        private MySqlConnection conn = null;
         private MySqlCommand cmd = null;
         private MySqlDataReader rdr = null;
-        
+
         /* These are more specified variables. */
         /* UnselectedCourses */
         private DataSet setUnselectedCourses = null;
@@ -112,13 +113,14 @@ namespace ElectiveManagementSystem
         /*SYSTEM*/
         private DataSet setSystem = null;
         private MySqlDataAdapter adpSystem = null;
+        private MySqlCommandBuilder systemCommandBuider = null;
         /*Column_department*/
         private DataSet setColumnDepartment = null;
         private MySqlDataAdapter adpColumnDepartment = null;
         /*Column_Room*/
         private DataSet setColumnRoom = null;
         private MySqlDataAdapter adpColumnRoom = null;
-         /* Searching cache */
+        /* Searching cache */
         private SearchingCache searchingCache;
 
         public Kernel(string server, string database, string userid, string password)
@@ -200,6 +202,17 @@ namespace ElectiveManagementSystem
                 {
                     conn = getConnection();
                     conn.Open();
+                    cmd = new MySqlCommand("select open from system;", conn);
+                    rdr = cmd.ExecuteReader();
+                    rdr.Read();
+                    if (rdr[0].ToString() == "0")
+                    {
+                        MessageBox.Show("系统已经关闭了亲。");
+                        return;
+                    }
+                    rdr.Close();
+                    cmd = null;
+                    rdr = null;
                     cmd = new MySqlCommand(
                         "getStudentPassword", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -262,7 +275,7 @@ namespace ElectiveManagementSystem
 
         public void Load(KernelLoadModifier modifier, Object control)
         {
-            if(modifier == KernelLoadModifier.UNSELECTED_COURSES)
+            if (modifier == KernelLoadModifier.UNSELECTED_COURSES)
             {
                 try
                 {
@@ -285,16 +298,16 @@ namespace ElectiveManagementSystem
                     adpUnselectedCourses = new MySqlDataAdapter(
                             cmd);
                     adpUnselectedCourses.Fill(setUnselectedCourses);
-                  //  setUnselectedCourses.Tables.
+                    //  setUnselectedCourses.Tables.
                     view.DataSource = setUnselectedCourses;
                     view.DataMember = "Table";
                 }
                 finally
                 {
-                  
+
                 }
             }
-            else if(modifier == KernelLoadModifier.SELECTED_COURSES)
+            else if (modifier == KernelLoadModifier.SELECTED_COURSES)
             {
                 try
                 {
@@ -316,7 +329,7 @@ namespace ElectiveManagementSystem
                     }
                     adpSelectedCourses = new MySqlDataAdapter(
                             cmd);
-                    
+
                     adpSelectedCourses.Fill(setSelectedCourses);
                     view.DataSource = setSelectedCourses;
                     view.DataMember = "Table";
@@ -327,7 +340,7 @@ namespace ElectiveManagementSystem
             }
             else if (modifier == KernelLoadModifier.DEPARTMENT)
             {
-                
+
                 try
                 {
                     ComboBox comboBox = (ComboBox)control;
@@ -347,7 +360,7 @@ namespace ElectiveManagementSystem
                     }
                     adpDepartmentNames = new MySqlDataAdapter(
                             cmd);
-                    
+
                     adpDepartmentNames.Fill(setDepartmentNames);
                     comboBox.DataSource = setDepartmentNames.Tables["Table"];
                     comboBox.DisplayMember = "department_name";
@@ -407,20 +420,19 @@ namespace ElectiveManagementSystem
                 {
                 }
             }
-            else if (modifier == KernelLoadModifier.SYSTEM) 
+            else if (modifier == KernelLoadModifier.SYSTEM)
             {
-                DataGridView view = (DataGridView)control;
+                CheckBox cb = (CheckBox)control;
                 conn = getConnection();
-                cmd = new MySqlCommand("select * from system;", conn);
-                if (setSystem == null)
-                    setSystem = new DataSet();
+                cmd = new MySqlCommand("select open from system;", conn);
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                Int32 open = Convert.ToInt32(reader[0].ToString());
+                if (open == 0)
+                    cb.Checked = false;
                 else
-                    setSystem.Clear();
-                if (adpSystem == null)
-                    adpSystem = new MySqlDataAdapter(cmd);
-                adpSystem.Fill(setSystem);
-                view.DataSource = setSystem;
-                view.DataMember = "Table";
+                    cb.Checked = true;
             }
             else if (modifier == KernelLoadModifier.COLUMN_DEPARTMENT)
             {
@@ -435,7 +447,6 @@ namespace ElectiveManagementSystem
                     adpColumnDepartment = new MySqlDataAdapter(cmd);
                 adpColumnDepartment.Fill(setColumnDepartment);
                 cb.DataSource = setColumnDepartment;
-                //cb.DataPropertyName = "rid";
                 cb.ValueMember = "Table.did";
                 cb.DisplayMember = "Table.name";
             }
@@ -451,7 +462,6 @@ namespace ElectiveManagementSystem
                 if (adpColumnRoom == null)
                     adpColumnRoom = new MySqlDataAdapter(cmd);
                 adpColumnRoom.Fill(setColumnRoom);
-                MessageBox.Show(setColumnRoom.GetXml());
                 cb.DataSource = setColumnRoom;
                 cb.ValueMember = "Table.rid";
                 cb.DisplayMember = "Table.name";
@@ -486,15 +496,50 @@ namespace ElectiveManagementSystem
                     {
                         conn.Close();
                     }
-                    if( rdr != null)
+                    if (rdr != null)
                     {
                         rdr.Close();
                     }
                 }
+            }
+            else if (modifier == KernelLoadModifier.SCHEDULE)
+            {
+                try
+                {
+                    DataGridView dg = (DataGridView)control;
+                    getConnection();
+                    conn.Open();
+                    cmd = new MySqlCommand("select course.name, course.time, room.name from course join room join sc where sc.sid = @current_id and sc.cid = course.cid and course.rid = room.rid;", conn);
+                    cmd.Parameters.Add(new MySqlParameter("@current_id", currentUserID));
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        String name = rdr[0].ToString();
+                        String[] time = rdr[1].ToString().Split(',');
+                        String room = rdr[2].ToString();
+                        for (int i = 0; i < time.Length; i++)
+                        {
+                            String[] tmp = time[i].Split('.');
+                            int column = Convert.ToInt32(tmp[0]);
+                            int row = Convert.ToInt32(tmp[1]);
+                            row -= 1;
+                            if (row >= 2)
+                                row += 1;
 
+                            dg.Rows[row].Cells[column].Value += (name + " " +room + " ");
+                        }
+                    }
+                }
+                finally
+                {
+                    if (conn != null)
+                        conn.Close();
+                    if (rdr != null)
+                        rdr.Close();
+                }
             }
         }
-        
+
         public void update(KernelLoadModifier modifier)
         {
             if (modifier == KernelLoadModifier.ALL_COURSES)
@@ -503,7 +548,23 @@ namespace ElectiveManagementSystem
             }
             if (modifier == KernelLoadModifier.STUDENT)
             {
-                adpStudentList.Update(setStudentList);
+                try
+                {
+                    adpStudentList.Update(setStudentList);
+                }catch(Exception e){
+                    MessageBox.Show("BUG的逆袭");
+                }
+            }
+        }
+        public void update(KernelLoadModifier modifier, CheckBox cb)
+        {
+            if (modifier == KernelLoadModifier.SYSTEM)
+            {
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand("UPDATE SYSTEM SET OPEN = @open", conn);
+                cmd.Parameters.Add(new MySqlParameter("@open", cb.Checked == true ? 1 : 0));
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -516,7 +577,7 @@ namespace ElectiveManagementSystem
                 cmd = new MySqlCommand(
                     "searchUnselectedCourses", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new  MySqlParameter("@course_id", courseID));
+                cmd.Parameters.Add(new MySqlParameter("@course_id", courseID));
                 cmd.Parameters.Add(new MySqlParameter("@course_name", courseName));
                 cmd.Parameters.Add(new MySqlParameter("@department_name", department));
                 cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
@@ -604,7 +665,7 @@ namespace ElectiveManagementSystem
                 cmd.Parameters.Add(new MySqlParameter("@student_id", currentUserID));
                 cmd.Parameters.Add(new MySqlParameter("@course_id", cid));
                 cmd.ExecuteNonQuery();
-                
+
             }
             finally
             {
@@ -615,17 +676,7 @@ namespace ElectiveManagementSystem
                 ReloadUserForm();
             }
         }
-        public void addCourses(String cid, String name, String time, String detail, String rid, String credit, String department)
-        {
-            /*addCourseCommand = new MySqlCommand("INSERT INTO course VALUES (@cid, @name, @time, @detail, @rid, @credit, did) where (select * from department where @department = department.name)");
-            addCourseCommand.Parameters.Add("@cid", cid);
-            addCourseCommand.Parameters.Add("@name", name);
-            addCourseCommand.Parameters.Add("@detail", detail);
-            addCourseCommand.Parameters.Add("@rid", rid);
-            addCourseCommand.Parameters.Add("@credit", credit);
-            addCourseCommand.Parameters.Add("@department", department);*/
 
-        }
 
         public void ChangePassword(PasswordInformation info)
         {
@@ -633,7 +684,8 @@ namespace ElectiveManagementSystem
             string newPassword = info.newPassword.Text.Trim();
             string confirm = info.confirm.Text.Trim();
             bool succeeded = false;
-            try {
+            try
+            {
                 conn = getConnection();
                 conn.Open();
                 cmd = new MySqlCommand(
@@ -650,24 +702,24 @@ namespace ElectiveManagementSystem
                         break;
                     }
                 }
-            } 
+            }
             catch (Exception e)
             {
 
             }
-            finally 
+            finally
             {
-                if(conn == null)
+                if (conn == null)
                 {
                     conn.Close();
                 }
-                if(rdr == null)
+                if (rdr == null)
                 {
                     rdr.Close();
                 }
 
             }
-            
+
             if (succeeded)
             {
                 //bool empty = false;
@@ -684,7 +736,7 @@ namespace ElectiveManagementSystem
                 if (newPassword != confirm)
                 {
                     MessageBox.Show("新密码不相符！");
-                    return; 
+                    return;
                 }
                 if (newPassword == confirm)
                 {

@@ -40,6 +40,8 @@ namespace ElectiveManagementSystem
             kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
             kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
             kernel.Load(KernelLoadModifier.PERSONAL_INFORMATION, new PersonelInformation(label_name, label_ID, label_department));
+            initSchedule();
+            //add here
         }
 
         private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -72,12 +74,15 @@ namespace ElectiveManagementSystem
                 kernel.Search(sc.courseID, sc.courseName, sc.department, dataGridView_unselectedCourses);
                 kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
                 kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
+                initSchedule();
             }
             else
             {
                 kernel.Load(KernelLoadModifier.UNSELECTED_COURSES, dataGridView_unselectedCourses);
                 kernel.Load(KernelLoadModifier.SELECTED_COURSES, dataGridView_selectedCourses);
                 kernel.Load(KernelLoadModifier.DEPARTMENT, comboBox_department);
+                kernel.Load(KernelLoadModifier.SCHEDULE, dataGridView_schedule);
+                initSchedule();
             }
         }
         private void button_search_Click(object sender, EventArgs e)
@@ -110,7 +115,24 @@ namespace ElectiveManagementSystem
             textBox_newPasswordConfirm.Clear();
         }
 
-       
+        private void initSchedule()
+        {
+            dataGridView_schedule.Rows.Clear();
+            String[][] rows = new String[6][];
+            rows[0] = new String[]{"第一节：8：00 - 9：50", "", "", "", "", ""};
+            rows[1] = new String[] { "第二节：10：10 - 12：00", "", "", "", "", "" };
+            rows[2] = new String[] { "午休", "", "", "", "", "" };
+            rows[3] = new String[] { "第三节：12：10 - 16:00", "", "", "", "", "" };
+            rows[4] = new String[] { "第四节：16:10 - 18：00", "", "", "", "", "" };
+            rows[5] = new String[] { "第五节：19:10 - 21：00", "", "", "", "", "" };
+            for (int i = 0; i < 6; i++)
+            {
+                dataGridView_schedule.Rows.Add(rows[i]);
+                dataGridView_schedule.Rows[i].Height = 60;
+            }
+            dataGridView_schedule.Columns[0].Width = 200;
+            kernel.Load(KernelLoadModifier.SCHEDULE, dataGridView_schedule);
+        }
 
     }
 }

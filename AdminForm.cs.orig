@@ -55,7 +55,12 @@ namespace ElectiveManagementSystem
 
         private void dataGridView_allCourses_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
+<<<<<<< HEAD
             kernel.update(KernelLoadModifier.ALL_COURSES);
+=======
+            if (dataGridView_system.Columns[e.ColumnIndex].HeaderText == "选课系统开关")
+            { }
+>>>>>>> b273697233c7646a955b41abf723828584219ad5
         }
 
         private void dataGridView_student_CellLeave(object sender, DataGridViewCellEventArgs e)

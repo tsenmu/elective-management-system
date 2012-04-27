@@ -59,22 +59,28 @@
             this.tabPage_schedule = new System.Windows.Forms.TabPage();
             this.dataGridView_schedule = new System.Windows.Forms.DataGridView();
             this.tabPage_information = new System.Windows.Forms.TabPage();
-            this.groupBox_information = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label_ro_ID = new System.Windows.Forms.Label();
-            this.label_ro_name = new System.Windows.Forms.Label();
-            this.label_ro_department = new System.Windows.Forms.Label();
-            this.label_ID = new System.Windows.Forms.Label();
-            this.label_name = new System.Windows.Forms.Label();
-            this.label_department = new System.Windows.Forms.Label();
-            this.label_ro_oldPassword = new System.Windows.Forms.Label();
-            this.label_ro_newPassword = new System.Windows.Forms.Label();
-            this.label_ro_repeatNewPassword = new System.Windows.Forms.Label();
-            this.textBox_oldPassword = new System.Windows.Forms.TextBox();
-            this.textBox_newPassword = new System.Windows.Forms.TextBox();
-            this.textBox_newPasswordConfirm = new System.Windows.Forms.TextBox();
-            this.button_confirm = new System.Windows.Forms.Button();
             this.button_reset = new System.Windows.Forms.Button();
+            this.button_confirm = new System.Windows.Forms.Button();
+            this.textBox_newPasswordConfirm = new System.Windows.Forms.TextBox();
+            this.textBox_newPassword = new System.Windows.Forms.TextBox();
+            this.textBox_oldPassword = new System.Windows.Forms.TextBox();
+            this.label_ro_repeatNewPassword = new System.Windows.Forms.Label();
+            this.label_ro_newPassword = new System.Windows.Forms.Label();
+            this.label_ro_oldPassword = new System.Windows.Forms.Label();
+            this.groupBox_information = new System.Windows.Forms.GroupBox();
+            this.label_department = new System.Windows.Forms.Label();
+            this.label_name = new System.Windows.Forms.Label();
+            this.label_ID = new System.Windows.Forms.Label();
+            this.label_ro_department = new System.Windows.Forms.Label();
+            this.label_ro_name = new System.Windows.Forms.Label();
+            this.label_ro_ID = new System.Windows.Forms.Label();
+            this.emptyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mondayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tuesdayColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thuColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.friColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabPage_electiveManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).BeginInit();
@@ -82,8 +88,8 @@
             this.tabPage_schedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_schedule)).BeginInit();
             this.tabPage_information.SuspendLayout();
-            this.groupBox_information.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox_information.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -112,10 +118,10 @@
             this.tabPage_electiveManagement.Controls.Add(this.label_SelectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_unselectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_selectedCourses);
-            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 22);
             this.tabPage_electiveManagement.Name = "tabPage_electiveManagement";
             this.tabPage_electiveManagement.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 607);
+            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 606);
             this.tabPage_electiveManagement.TabIndex = 0;
             this.tabPage_electiveManagement.Text = "选课退课";
             this.tabPage_electiveManagement.UseVisualStyleBackColor = true;
@@ -331,19 +337,30 @@
             // tabPage_schedule
             // 
             this.tabPage_schedule.Controls.Add(this.dataGridView_schedule);
-            this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_schedule.Location = new System.Drawing.Point(4, 22);
             this.tabPage_schedule.Name = "tabPage_schedule";
             this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_schedule.Size = new System.Drawing.Size(793, 607);
+            this.tabPage_schedule.Size = new System.Drawing.Size(793, 606);
             this.tabPage_schedule.TabIndex = 1;
             this.tabPage_schedule.Text = "课表";
             this.tabPage_schedule.UseVisualStyleBackColor = true;
             // 
             // dataGridView_schedule
             // 
+            this.dataGridView_schedule.AllowUserToAddRows = false;
+            this.dataGridView_schedule.AllowUserToDeleteRows = false;
             this.dataGridView_schedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_schedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.emptyColumn,
+            this.mondayColumn,
+            this.tuesdayColumn,
+            this.wedColumn,
+            this.thuColumn,
+            this.friColumn});
+            this.dataGridView_schedule.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dataGridView_schedule.Location = new System.Drawing.Point(6, 6);
             this.dataGridView_schedule.Name = "dataGridView_schedule";
+            this.dataGridView_schedule.RowHeadersVisible = false;
             this.dataGridView_schedule.RowTemplate.Height = 23;
             this.dataGridView_schedule.Size = new System.Drawing.Size(781, 573);
             this.dataGridView_schedule.TabIndex = 0;
@@ -352,28 +369,13 @@
             // 
             this.tabPage_information.Controls.Add(this.groupBox2);
             this.tabPage_information.Controls.Add(this.groupBox_information);
-            this.tabPage_information.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_information.Location = new System.Drawing.Point(4, 22);
             this.tabPage_information.Name = "tabPage_information";
             this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_information.Size = new System.Drawing.Size(793, 607);
+            this.tabPage_information.Size = new System.Drawing.Size(793, 606);
             this.tabPage_information.TabIndex = 2;
             this.tabPage_information.Text = "个人设置";
             this.tabPage_information.UseVisualStyleBackColor = true;
-            // 
-            // groupBox_information
-            // 
-            this.groupBox_information.Controls.Add(this.label_department);
-            this.groupBox_information.Controls.Add(this.label_name);
-            this.groupBox_information.Controls.Add(this.label_ID);
-            this.groupBox_information.Controls.Add(this.label_ro_department);
-            this.groupBox_information.Controls.Add(this.label_ro_name);
-            this.groupBox_information.Controls.Add(this.label_ro_ID);
-            this.groupBox_information.Location = new System.Drawing.Point(6, 6);
-            this.groupBox_information.Name = "groupBox_information";
-            this.groupBox_information.Size = new System.Drawing.Size(781, 182);
-            this.groupBox_information.TabIndex = 0;
-            this.groupBox_information.TabStop = false;
-            this.groupBox_information.Text = "个人信息";
             // 
             // groupBox2
             // 
@@ -392,110 +394,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "更改密码";
             // 
-            // label_ro_ID
+            // button_reset
             // 
-            this.label_ro_ID.AutoSize = true;
-            this.label_ro_ID.Location = new System.Drawing.Point(27, 35);
-            this.label_ro_ID.Name = "label_ro_ID";
-            this.label_ro_ID.Size = new System.Drawing.Size(41, 12);
-            this.label_ro_ID.TabIndex = 0;
-            this.label_ro_ID.Text = "学号：";
-            // 
-            // label_ro_name
-            // 
-            this.label_ro_name.AutoSize = true;
-            this.label_ro_name.Location = new System.Drawing.Point(27, 74);
-            this.label_ro_name.Name = "label_ro_name";
-            this.label_ro_name.Size = new System.Drawing.Size(41, 12);
-            this.label_ro_name.TabIndex = 1;
-            this.label_ro_name.Text = "姓名：";
-            // 
-            // label_ro_department
-            // 
-            this.label_ro_department.AutoSize = true;
-            this.label_ro_department.Location = new System.Drawing.Point(27, 114);
-            this.label_ro_department.Name = "label_ro_department";
-            this.label_ro_department.Size = new System.Drawing.Size(41, 12);
-            this.label_ro_department.TabIndex = 2;
-            this.label_ro_department.Text = "学院：";
-            // 
-            // label_ID
-            // 
-            this.label_ID.AutoSize = true;
-            this.label_ID.Location = new System.Drawing.Point(91, 35);
-            this.label_ID.Name = "label_ID";
-            this.label_ID.Size = new System.Drawing.Size(35, 12);
-            this.label_ID.TabIndex = 3;
-            this.label_ID.Text = "label";
-            // 
-            // label_name
-            // 
-            this.label_name.AutoSize = true;
-            this.label_name.Location = new System.Drawing.Point(91, 74);
-            this.label_name.Name = "label_name";
-            this.label_name.Size = new System.Drawing.Size(35, 12);
-            this.label_name.TabIndex = 4;
-            this.label_name.Text = "label";
-            // 
-            // label_department
-            // 
-            this.label_department.AutoSize = true;
-            this.label_department.Location = new System.Drawing.Point(91, 114);
-            this.label_department.Name = "label_department";
-            this.label_department.Size = new System.Drawing.Size(35, 12);
-            this.label_department.TabIndex = 5;
-            this.label_department.Text = "label";
-            // 
-            // label_ro_oldPassword
-            // 
-            this.label_ro_oldPassword.AutoSize = true;
-            this.label_ro_oldPassword.Location = new System.Drawing.Point(51, 58);
-            this.label_ro_oldPassword.Name = "label_ro_oldPassword";
-            this.label_ro_oldPassword.Size = new System.Drawing.Size(53, 12);
-            this.label_ro_oldPassword.TabIndex = 0;
-            this.label_ro_oldPassword.Text = "旧密码：";
-            // 
-            // label_ro_newPassword
-            // 
-            this.label_ro_newPassword.AutoSize = true;
-            this.label_ro_newPassword.Location = new System.Drawing.Point(51, 99);
-            this.label_ro_newPassword.Name = "label_ro_newPassword";
-            this.label_ro_newPassword.Size = new System.Drawing.Size(53, 12);
-            this.label_ro_newPassword.TabIndex = 1;
-            this.label_ro_newPassword.Text = "新密码：";
-            // 
-            // label_ro_repeatNewPassword
-            // 
-            this.label_ro_repeatNewPassword.AutoSize = true;
-            this.label_ro_repeatNewPassword.Location = new System.Drawing.Point(27, 136);
-            this.label_ro_repeatNewPassword.Name = "label_ro_repeatNewPassword";
-            this.label_ro_repeatNewPassword.Size = new System.Drawing.Size(77, 12);
-            this.label_ro_repeatNewPassword.TabIndex = 2;
-            this.label_ro_repeatNewPassword.Text = "新密码确认：";
-            // 
-            // textBox_oldPassword
-            // 
-            this.textBox_oldPassword.Location = new System.Drawing.Point(110, 55);
-            this.textBox_oldPassword.Name = "textBox_oldPassword";
-            this.textBox_oldPassword.Size = new System.Drawing.Size(100, 21);
-            this.textBox_oldPassword.TabIndex = 3;
-            this.textBox_oldPassword.UseSystemPasswordChar = true;
-            // 
-            // textBox_newPassword
-            // 
-            this.textBox_newPassword.Location = new System.Drawing.Point(110, 96);
-            this.textBox_newPassword.Name = "textBox_newPassword";
-            this.textBox_newPassword.Size = new System.Drawing.Size(100, 21);
-            this.textBox_newPassword.TabIndex = 4;
-            this.textBox_newPassword.UseSystemPasswordChar = true;
-            // 
-            // textBox_newPasswordConfirm
-            // 
-            this.textBox_newPasswordConfirm.Location = new System.Drawing.Point(110, 133);
-            this.textBox_newPasswordConfirm.Name = "textBox_newPasswordConfirm";
-            this.textBox_newPasswordConfirm.Size = new System.Drawing.Size(100, 21);
-            this.textBox_newPasswordConfirm.TabIndex = 5;
-            this.textBox_newPasswordConfirm.UseSystemPasswordChar = true;
+            this.button_reset.Location = new System.Drawing.Point(135, 177);
+            this.button_reset.Name = "button_reset";
+            this.button_reset.Size = new System.Drawing.Size(75, 23);
+            this.button_reset.TabIndex = 7;
+            this.button_reset.Text = "重置";
+            this.button_reset.UseVisualStyleBackColor = true;
+            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
             // 
             // button_confirm
             // 
@@ -507,15 +414,155 @@
             this.button_confirm.UseVisualStyleBackColor = true;
             this.button_confirm.Click += new System.EventHandler(this.button_confirm_Click);
             // 
-            // button_reset
+            // textBox_newPasswordConfirm
             // 
-            this.button_reset.Location = new System.Drawing.Point(135, 177);
-            this.button_reset.Name = "button_reset";
-            this.button_reset.Size = new System.Drawing.Size(75, 23);
-            this.button_reset.TabIndex = 7;
-            this.button_reset.Text = "重置";
-            this.button_reset.UseVisualStyleBackColor = true;
-            this.button_reset.Click += new System.EventHandler(this.button_reset_Click);
+            this.textBox_newPasswordConfirm.Location = new System.Drawing.Point(110, 133);
+            this.textBox_newPasswordConfirm.Name = "textBox_newPasswordConfirm";
+            this.textBox_newPasswordConfirm.Size = new System.Drawing.Size(100, 21);
+            this.textBox_newPasswordConfirm.TabIndex = 5;
+            this.textBox_newPasswordConfirm.UseSystemPasswordChar = true;
+            // 
+            // textBox_newPassword
+            // 
+            this.textBox_newPassword.Location = new System.Drawing.Point(110, 96);
+            this.textBox_newPassword.Name = "textBox_newPassword";
+            this.textBox_newPassword.Size = new System.Drawing.Size(100, 21);
+            this.textBox_newPassword.TabIndex = 4;
+            this.textBox_newPassword.UseSystemPasswordChar = true;
+            // 
+            // textBox_oldPassword
+            // 
+            this.textBox_oldPassword.Location = new System.Drawing.Point(110, 55);
+            this.textBox_oldPassword.Name = "textBox_oldPassword";
+            this.textBox_oldPassword.Size = new System.Drawing.Size(100, 21);
+            this.textBox_oldPassword.TabIndex = 3;
+            this.textBox_oldPassword.UseSystemPasswordChar = true;
+            // 
+            // label_ro_repeatNewPassword
+            // 
+            this.label_ro_repeatNewPassword.AutoSize = true;
+            this.label_ro_repeatNewPassword.Location = new System.Drawing.Point(27, 136);
+            this.label_ro_repeatNewPassword.Name = "label_ro_repeatNewPassword";
+            this.label_ro_repeatNewPassword.Size = new System.Drawing.Size(77, 12);
+            this.label_ro_repeatNewPassword.TabIndex = 2;
+            this.label_ro_repeatNewPassword.Text = "新密码确认：";
+            // 
+            // label_ro_newPassword
+            // 
+            this.label_ro_newPassword.AutoSize = true;
+            this.label_ro_newPassword.Location = new System.Drawing.Point(51, 99);
+            this.label_ro_newPassword.Name = "label_ro_newPassword";
+            this.label_ro_newPassword.Size = new System.Drawing.Size(53, 12);
+            this.label_ro_newPassword.TabIndex = 1;
+            this.label_ro_newPassword.Text = "新密码：";
+            // 
+            // label_ro_oldPassword
+            // 
+            this.label_ro_oldPassword.AutoSize = true;
+            this.label_ro_oldPassword.Location = new System.Drawing.Point(51, 58);
+            this.label_ro_oldPassword.Name = "label_ro_oldPassword";
+            this.label_ro_oldPassword.Size = new System.Drawing.Size(53, 12);
+            this.label_ro_oldPassword.TabIndex = 0;
+            this.label_ro_oldPassword.Text = "旧密码：";
+            // 
+            // groupBox_information
+            // 
+            this.groupBox_information.Controls.Add(this.label_department);
+            this.groupBox_information.Controls.Add(this.label_name);
+            this.groupBox_information.Controls.Add(this.label_ID);
+            this.groupBox_information.Controls.Add(this.label_ro_department);
+            this.groupBox_information.Controls.Add(this.label_ro_name);
+            this.groupBox_information.Controls.Add(this.label_ro_ID);
+            this.groupBox_information.Location = new System.Drawing.Point(6, 6);
+            this.groupBox_information.Name = "groupBox_information";
+            this.groupBox_information.Size = new System.Drawing.Size(781, 182);
+            this.groupBox_information.TabIndex = 0;
+            this.groupBox_information.TabStop = false;
+            this.groupBox_information.Text = "个人信息";
+            // 
+            // label_department
+            // 
+            this.label_department.AutoSize = true;
+            this.label_department.Location = new System.Drawing.Point(91, 114);
+            this.label_department.Name = "label_department";
+            this.label_department.Size = new System.Drawing.Size(35, 12);
+            this.label_department.TabIndex = 5;
+            this.label_department.Text = "label";
+            // 
+            // label_name
+            // 
+            this.label_name.AutoSize = true;
+            this.label_name.Location = new System.Drawing.Point(91, 74);
+            this.label_name.Name = "label_name";
+            this.label_name.Size = new System.Drawing.Size(35, 12);
+            this.label_name.TabIndex = 4;
+            this.label_name.Text = "label";
+            // 
+            // label_ID
+            // 
+            this.label_ID.AutoSize = true;
+            this.label_ID.Location = new System.Drawing.Point(91, 35);
+            this.label_ID.Name = "label_ID";
+            this.label_ID.Size = new System.Drawing.Size(35, 12);
+            this.label_ID.TabIndex = 3;
+            this.label_ID.Text = "label";
+            // 
+            // label_ro_department
+            // 
+            this.label_ro_department.AutoSize = true;
+            this.label_ro_department.Location = new System.Drawing.Point(27, 114);
+            this.label_ro_department.Name = "label_ro_department";
+            this.label_ro_department.Size = new System.Drawing.Size(41, 12);
+            this.label_ro_department.TabIndex = 2;
+            this.label_ro_department.Text = "学院：";
+            // 
+            // label_ro_name
+            // 
+            this.label_ro_name.AutoSize = true;
+            this.label_ro_name.Location = new System.Drawing.Point(27, 74);
+            this.label_ro_name.Name = "label_ro_name";
+            this.label_ro_name.Size = new System.Drawing.Size(41, 12);
+            this.label_ro_name.TabIndex = 1;
+            this.label_ro_name.Text = "姓名：";
+            // 
+            // label_ro_ID
+            // 
+            this.label_ro_ID.AutoSize = true;
+            this.label_ro_ID.Location = new System.Drawing.Point(27, 35);
+            this.label_ro_ID.Name = "label_ro_ID";
+            this.label_ro_ID.Size = new System.Drawing.Size(41, 12);
+            this.label_ro_ID.TabIndex = 0;
+            this.label_ro_ID.Text = "学号：";
+            // 
+            // emptyColumn
+            // 
+            this.emptyColumn.HeaderText = " ";
+            this.emptyColumn.Name = "emptyColumn";
+            // 
+            // mondayColumn
+            // 
+            this.mondayColumn.HeaderText = "周一";
+            this.mondayColumn.Name = "mondayColumn";
+            // 
+            // tuesdayColumn
+            // 
+            this.tuesdayColumn.HeaderText = "周二";
+            this.tuesdayColumn.Name = "tuesdayColumn";
+            // 
+            // wedColumn
+            // 
+            this.wedColumn.HeaderText = "周三";
+            this.wedColumn.Name = "wedColumn";
+            // 
+            // thuColumn
+            // 
+            this.thuColumn.HeaderText = "周四";
+            this.thuColumn.Name = "thuColumn";
+            // 
+            // friColumn
+            // 
+            this.friColumn.HeaderText = "周五";
+            this.friColumn.Name = "friColumn";
             // 
             // UserForm
             // 
@@ -535,10 +582,10 @@
             this.tabPage_schedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_schedule)).EndInit();
             this.tabPage_information.ResumeLayout(false);
-            this.groupBox_information.ResumeLayout(false);
-            this.groupBox_information.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox_information.ResumeLayout(false);
+            this.groupBox_information.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -591,5 +638,11 @@
         private System.Windows.Forms.Button button_confirm;
         private System.Windows.Forms.TextBox textBox_newPasswordConfirm;
         private System.Windows.Forms.Button button_reset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emptyColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mondayColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tuesdayColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wedColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thuColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn friColumn;
     }
 }
