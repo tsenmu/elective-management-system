@@ -31,6 +31,10 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_userManagement = new System.Windows.Forms.TabPage();
             this.dataGridView_student = new System.Windows.Forms.DataGridView();
+            this.sid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.department = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabPage_courseManagement = new System.Windows.Forms.TabPage();
             this.dataGridView_allCourses = new System.Windows.Forms.DataGridView();
             this.cid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,19 +45,13 @@
             this.department_course = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage_systemManagement = new System.Windows.Forms.TabPage();
-            this.dataGridView_system = new System.Windows.Forms.DataGridView();
-            this.openSwitch = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.sid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.department = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.openSwitch = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPage_userManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_student)).BeginInit();
             this.tabPage_courseManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_allCourses)).BeginInit();
             this.tabPage_systemManagement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_system)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -80,7 +78,6 @@
             // 
             // dataGridView_student
             // 
-            this.dataGridView_student.AllowUserToDeleteRows = false;
             this.dataGridView_student.AllowUserToOrderColumns = true;
             this.dataGridView_student.AllowUserToResizeRows = false;
             this.dataGridView_student.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -89,12 +86,40 @@
             this.name,
             this.passwd,
             this.department});
+            this.dataGridView_student.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.dataGridView_student.Location = new System.Drawing.Point(3, 3);
             this.dataGridView_student.Name = "dataGridView_student";
             this.dataGridView_student.RowTemplate.Height = 23;
             this.dataGridView_student.Size = new System.Drawing.Size(744, 532);
             this.dataGridView_student.TabIndex = 0;
+            this.dataGridView_student.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_student_CellEnter);
             this.dataGridView_student.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_student_CellLeave);
+            // 
+            // sid
+            // 
+            this.sid.DataPropertyName = "sid";
+            this.sid.HeaderText = "学号";
+            this.sid.Name = "sid";
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "名字";
+            this.name.Name = "name";
+            // 
+            // passwd
+            // 
+            this.passwd.DataPropertyName = "passwd";
+            this.passwd.HeaderText = "密码";
+            this.passwd.Name = "passwd";
+            // 
+            // department
+            // 
+            this.department.DataPropertyName = "did";
+            this.department.HeaderText = "学院";
+            this.department.Name = "department";
+            this.department.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.department.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // tabPage_courseManagement
             // 
@@ -127,6 +152,7 @@
             this.dataGridView_allCourses.TabIndex = 0;
             this.dataGridView_allCourses.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_allCourses_CellContentClick);
             this.dataGridView_allCourses.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_allCourses_CellEndEdit);
+            this.dataGridView_allCourses.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_allCourses_CellEnter);
             this.dataGridView_allCourses.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_allCourses_CellFormatting);
             this.dataGridView_allCourses.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_allCourses_CellLeave);
             // 
@@ -178,7 +204,7 @@
             // 
             // tabPage_systemManagement
             // 
-            this.tabPage_systemManagement.Controls.Add(this.dataGridView_system);
+            this.tabPage_systemManagement.Controls.Add(this.openSwitch);
             this.tabPage_systemManagement.Location = new System.Drawing.Point(4, 22);
             this.tabPage_systemManagement.Name = "tabPage_systemManagement";
             this.tabPage_systemManagement.Padding = new System.Windows.Forms.Padding(3);
@@ -187,52 +213,16 @@
             this.tabPage_systemManagement.Text = "系统管理";
             this.tabPage_systemManagement.UseVisualStyleBackColor = true;
             // 
-            // dataGridView_system
-            // 
-            this.dataGridView_system.AllowUserToAddRows = false;
-            this.dataGridView_system.AllowUserToDeleteRows = false;
-            this.dataGridView_system.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_system.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.openSwitch});
-            this.dataGridView_system.Location = new System.Drawing.Point(6, 3);
-            this.dataGridView_system.Name = "dataGridView_system";
-            this.dataGridView_system.RowTemplate.Height = 23;
-            this.dataGridView_system.Size = new System.Drawing.Size(738, 532);
-            this.dataGridView_system.TabIndex = 0;
-            this.dataGridView_system.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_system_CellContentClick);
-            // 
             // openSwitch
             // 
-            this.openSwitch.DataPropertyName = "open";
-            this.openSwitch.HeaderText = "选课系统开关";
+            this.openSwitch.AutoSize = true;
+            this.openSwitch.Location = new System.Drawing.Point(6, 6);
             this.openSwitch.Name = "openSwitch";
-            this.openSwitch.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // sid
-            // 
-            this.sid.DataPropertyName = "id";
-            this.sid.HeaderText = "学号";
-            this.sid.Name = "sid";
-            // 
-            // name
-            // 
-            this.name.DataPropertyName = "nm";
-            this.name.HeaderText = "名字";
-            this.name.Name = "name";
-            // 
-            // passwd
-            // 
-            this.passwd.DataPropertyName = "pw";
-            this.passwd.HeaderText = "密码";
-            this.passwd.Name = "passwd";
-            // 
-            // department
-            // 
-            this.department.DataPropertyName = "did";
-            this.department.HeaderText = "学院";
-            this.department.Name = "department";
-            this.department.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.department.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.openSwitch.Size = new System.Drawing.Size(72, 16);
+            this.openSwitch.TabIndex = 0;
+            this.openSwitch.Text = "系统开关";
+            this.openSwitch.UseVisualStyleBackColor = true;
+            this.openSwitch.CheckedChanged += new System.EventHandler(this.openSwitch_CheckedChanged);
             // 
             // AdminForm
             // 
@@ -250,7 +240,7 @@
             this.tabPage_courseManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_allCourses)).EndInit();
             this.tabPage_systemManagement.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_system)).EndInit();
+            this.tabPage_systemManagement.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -263,8 +253,6 @@
         private System.Windows.Forms.TabPage tabPage_systemManagement;
         private System.Windows.Forms.DataGridView dataGridView_student;
         private System.Windows.Forms.DataGridView dataGridView_allCourses;
-        private System.Windows.Forms.DataGridView dataGridView_system;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn openSwitch;
         private System.Windows.Forms.DataGridViewTextBoxColumn cid;
         private System.Windows.Forms.DataGridViewTextBoxColumn cname;
         private System.Windows.Forms.DataGridViewTextBoxColumn ctime;
@@ -276,5 +264,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwd;
         private System.Windows.Forms.DataGridViewComboBoxColumn department;
+        private System.Windows.Forms.CheckBox openSwitch;
     }
 }

@@ -84,6 +84,7 @@ namespace ElectiveManagementSystem
         /*SYSTEM*/
         private DataSet setSystem = null;
         private MySqlDataAdapter adpSystem = null;
+        private MySqlCommandBuilder systemCommandBuider = null;
         /*Column_department*/
         private DataSet setColumnDepartment = null;
         private MySqlDataAdapter adpColumnDepartment = null;
@@ -172,6 +173,14 @@ namespace ElectiveManagementSystem
                 {
                     conn = getConnection();
                     conn.Open();
+                    cmd = new MySqlCommand("select open from system;", conn);
+                    rdr = cmd.ExecuteReader();
+                    rdr.Read();
+                    if (rdr[0].ToString() == "0")
+                    {
+                        MessageBox.Show("系统已经关闭了亲。");
+                        return;
+                    }
                     cmd = new MySqlCommand(
                         "getStudentPassword", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -381,18 +390,17 @@ namespace ElectiveManagementSystem
             }
             else if (modifier == KernelLoadModifier.SYSTEM) 
             {
-                DataGridView view = (DataGridView)control;
+                CheckBox cb = (CheckBox)control;
                 conn = getConnection();
-                cmd = new MySqlCommand("select * from system;", conn);
-                if (setSystem == null)
-                    setSystem = new DataSet();
+                cmd = new MySqlCommand("select open from system;", conn);
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                Int32 open = Convert.ToInt32(reader[0].ToString());
+                if (open == 0)
+                    cb.Checked = false;
                 else
-                    setSystem.Clear();
-                if (adpSystem == null)
-                    adpSystem = new MySqlDataAdapter(cmd);
-                adpSystem.Fill(setSystem);
-                view.DataSource = setSystem;
-                view.DataMember = "Table";
+                    cb.Checked = true;
             }
             else if (modifier == KernelLoadModifier.COLUMN_DEPARTMENT)
             {
@@ -407,7 +415,6 @@ namespace ElectiveManagementSystem
                     adpColumnDepartment = new MySqlDataAdapter(cmd);
                 adpColumnDepartment.Fill(setColumnDepartment);
                 cb.DataSource = setColumnDepartment;
-                //cb.DataPropertyName = "rid";
                 cb.ValueMember = "Table.did";
                 cb.DisplayMember = "Table.name";
             }
@@ -423,7 +430,6 @@ namespace ElectiveManagementSystem
                 if (adpColumnRoom == null)
                     adpColumnRoom = new MySqlDataAdapter(cmd);
                 adpColumnRoom.Fill(setColumnRoom);
-                MessageBox.Show(setColumnRoom.GetXml());
                 cb.DataSource = setColumnRoom;
                 cb.ValueMember = "Table.rid";
                 cb.DisplayMember = "Table.name";
@@ -439,6 +445,17 @@ namespace ElectiveManagementSystem
             if (modifier == KernelLoadModifier.STUDENT)
             {
                 adpStudentList.Update(setStudentList);
+            }
+        }
+        public void update(KernelLoadModifier modifier, CheckBox cb)
+        {
+            if (modifier == KernelLoadModifier.SYSTEM)
+            {
+                conn = getConnection();
+                conn.Open();
+                cmd = new MySqlCommand("UPDATE SYSTEM SET OPEN = @open", conn);
+                cmd.Parameters.Add(new MySqlParameter("@open", cb.Checked == true ? 1 : 0));
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -549,17 +566,6 @@ namespace ElectiveManagementSystem
                 }
                 ReloadUserForm();
             }
-        }
-        public void addCourses(String cid, String name, String time, String detail, String rid, String credit, String department)
-        {
-            /*addCourseCommand = new MySqlCommand("INSERT INTO course VALUES (@cid, @name, @time, @detail, @rid, @credit, did) where (select * from department where @department = department.name)");
-            addCourseCommand.Parameters.Add("@cid", cid);
-            addCourseCommand.Parameters.Add("@name", name);
-            addCourseCommand.Parameters.Add("@detail", detail);
-            addCourseCommand.Parameters.Add("@rid", rid);
-            addCourseCommand.Parameters.Add("@credit", credit);
-            addCourseCommand.Parameters.Add("@department", department);*/
-
         }
     }
 }

@@ -23,10 +23,10 @@ namespace ElectiveManagementSystem
         {
             kernel.Load(KernelLoadModifier.STUDENT, dataGridView_student);
             kernel.Load(KernelLoadModifier.ALL_COURSES, dataGridView_allCourses);
-            kernel.Load(KernelLoadModifier.SYSTEM, dataGridView_system);
+            kernel.Load(KernelLoadModifier.SYSTEM, openSwitch);
             kernel.Load(KernelLoadModifier.COLUMN_ROOM, dataGridView_allCourses.Columns["room"]);
             kernel.Load(KernelLoadModifier.COLUMN_DEPARTMENT, dataGridView_allCourses.Columns["department_course"]);
-            kernel.Load(KernelLoadModifier.COLUMN_DEPARTMENT, dataGridView_allCourses.Columns["department"]);
+            kernel.Load(KernelLoadModifier.COLUMN_DEPARTMENT, dataGridView_student.Columns["department"]);
         }
 
         private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -52,17 +52,6 @@ namespace ElectiveManagementSystem
             }
         }
 
-        private void dataGridView_system_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView_system.Columns[e.ColumnIndex].HeaderText == "选课系统开关")
-                ;
-        }
-
-        private void addCourseButton_Click(object sender, EventArgs e)
-        {
-            //string cid = InputBox(message, title, defaultValue);
-            
-        }
 
         private void dataGridView_allCourses_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
@@ -77,6 +66,21 @@ namespace ElectiveManagementSystem
         private void dataGridView_allCourses_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             kernel.update(KernelLoadModifier.ALL_COURSES);
+        }
+
+        private void dataGridView_student_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.STUDENT);
+        }
+
+        private void dataGridView_allCourses_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.ALL_COURSES);
+        }
+
+        private void openSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            kernel.update(KernelLoadModifier.SYSTEM, openSwitch);
         }
 
     }
