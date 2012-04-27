@@ -35,6 +35,7 @@
             this.label_user = new System.Windows.Forms.Label();
             this.label_password = new System.Windows.Forms.Label();
             this.button_cancel = new System.Windows.Forms.Button();
+            this.button_passwordForgot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkBoxIsAdmin
@@ -42,7 +43,7 @@
             this.checkBoxIsAdmin.AutoSize = true;
             this.checkBoxIsAdmin.Location = new System.Drawing.Point(202, 69);
             this.checkBoxIsAdmin.Name = "checkBoxIsAdmin";
-            this.checkBoxIsAdmin.Size = new System.Drawing.Size(84, 16);
+            this.checkBoxIsAdmin.Size = new System.Drawing.Size(83, 16);
             this.checkBoxIsAdmin.TabIndex = 0;
             this.checkBoxIsAdmin.Text = "管理员登录";
             this.checkBoxIsAdmin.UseVisualStyleBackColor = true;
@@ -102,13 +103,24 @@
             this.button_cancel.UseVisualStyleBackColor = true;
             this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
             // 
+            // button_passwordForgot
+            // 
+            this.button_passwordForgot.Location = new System.Drawing.Point(13, 99);
+            this.button_passwordForgot.Name = "button_passwordForgot";
+            this.button_passwordForgot.Size = new System.Drawing.Size(75, 23);
+            this.button_passwordForgot.TabIndex = 7;
+            this.button_passwordForgot.Text = "忘记密码？";
+            this.button_passwordForgot.UseVisualStyleBackColor = true;
+            this.button_passwordForgot.Click += new System.EventHandler(this.button_passwordForgot_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(282, 138);
+            this.ClientSize = new System.Drawing.Size(290, 142);
+            this.Controls.Add(this.button_passwordForgot);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.label_password);
             this.Controls.Add(this.label_user);
@@ -136,5 +148,6 @@
         private System.Windows.Forms.Label label_user;
         private System.Windows.Forms.Label label_password;
         private System.Windows.Forms.Button button_cancel;
+        private System.Windows.Forms.Button button_passwordForgot;
     }
 }

@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_electiveManagement = new System.Windows.Forms.TabPage();
+            this.button_add = new System.Windows.Forms.Button();
+            this.button_remove = new System.Windows.Forms.Button();
             this.comboBox_department = new System.Windows.Forms.ComboBox();
             this.label_courseDepartment = new System.Windows.Forms.Label();
             this.textBox_courseName = new System.Windows.Forms.TextBox();
@@ -57,14 +59,31 @@
             this.tabPage_schedule = new System.Windows.Forms.TabPage();
             this.dataGridView_schedule = new System.Windows.Forms.DataGridView();
             this.tabPage_information = new System.Windows.Forms.TabPage();
-            this.button_remove = new System.Windows.Forms.Button();
-            this.button_add = new System.Windows.Forms.Button();
+            this.groupBox_information = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label_ro_ID = new System.Windows.Forms.Label();
+            this.label_ro_name = new System.Windows.Forms.Label();
+            this.label_ro_department = new System.Windows.Forms.Label();
+            this.label_ID = new System.Windows.Forms.Label();
+            this.label_name = new System.Windows.Forms.Label();
+            this.label_department = new System.Windows.Forms.Label();
+            this.label_ro_oldPassword = new System.Windows.Forms.Label();
+            this.label_ro_newPassword = new System.Windows.Forms.Label();
+            this.label_ro_repeatNewPassword = new System.Windows.Forms.Label();
+            this.textBox_oldPassword = new System.Windows.Forms.TextBox();
+            this.textBox_newPassword = new System.Windows.Forms.TextBox();
+            this.textBox_newPasswordConfirm = new System.Windows.Forms.TextBox();
+            this.button_confirm = new System.Windows.Forms.Button();
+            this.button_reset = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage_electiveManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_selectedCourses)).BeginInit();
             this.tabPage_schedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_schedule)).BeginInit();
+            this.tabPage_information.SuspendLayout();
+            this.groupBox_information.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -100,6 +119,26 @@
             this.tabPage_electiveManagement.TabIndex = 0;
             this.tabPage_electiveManagement.Text = "选课退课";
             this.tabPage_electiveManagement.UseVisualStyleBackColor = true;
+            // 
+            // button_add
+            // 
+            this.button_add.Image = ((System.Drawing.Image)(resources.GetObject("button_add.Image")));
+            this.button_add.Location = new System.Drawing.Point(8, 577);
+            this.button_add.Name = "button_add";
+            this.button_add.Size = new System.Drawing.Size(27, 27);
+            this.button_add.TabIndex = 12;
+            this.button_add.UseVisualStyleBackColor = true;
+            this.button_add.Click += new System.EventHandler(this.button_add_Click);
+            // 
+            // button_remove
+            // 
+            this.button_remove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button_remove.BackgroundImage")));
+            this.button_remove.Location = new System.Drawing.Point(8, 216);
+            this.button_remove.Name = "button_remove";
+            this.button_remove.Size = new System.Drawing.Size(27, 27);
+            this.button_remove.TabIndex = 11;
+            this.button_remove.UseVisualStyleBackColor = true;
+            this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
             // 
             // comboBox_department
             // 
@@ -293,7 +332,7 @@
             this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
             this.tabPage_schedule.Name = "tabPage_schedule";
             this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_schedule.Size = new System.Drawing.Size(793, 585);
+            this.tabPage_schedule.Size = new System.Drawing.Size(793, 607);
             this.tabPage_schedule.TabIndex = 1;
             this.tabPage_schedule.Text = "课表";
             this.tabPage_schedule.UseVisualStyleBackColor = true;
@@ -309,33 +348,167 @@
             // 
             // tabPage_information
             // 
+            this.tabPage_information.Controls.Add(this.groupBox2);
+            this.tabPage_information.Controls.Add(this.groupBox_information);
             this.tabPage_information.Location = new System.Drawing.Point(4, 21);
             this.tabPage_information.Name = "tabPage_information";
             this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_information.Size = new System.Drawing.Size(793, 585);
+            this.tabPage_information.Size = new System.Drawing.Size(793, 607);
             this.tabPage_information.TabIndex = 2;
-            this.tabPage_information.Text = "个人信息";
+            this.tabPage_information.Text = "个人设置";
             this.tabPage_information.UseVisualStyleBackColor = true;
             // 
-            // button_remove
+            // groupBox_information
             // 
-            this.button_remove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button_remove.BackgroundImage")));
-            this.button_remove.Location = new System.Drawing.Point(8, 216);
-            this.button_remove.Name = "button_remove";
-            this.button_remove.Size = new System.Drawing.Size(27, 27);
-            this.button_remove.TabIndex = 11;
-            this.button_remove.UseVisualStyleBackColor = true;
-            this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
+            this.groupBox_information.Controls.Add(this.label_department);
+            this.groupBox_information.Controls.Add(this.label_name);
+            this.groupBox_information.Controls.Add(this.label_ID);
+            this.groupBox_information.Controls.Add(this.label_ro_department);
+            this.groupBox_information.Controls.Add(this.label_ro_name);
+            this.groupBox_information.Controls.Add(this.label_ro_ID);
+            this.groupBox_information.Location = new System.Drawing.Point(6, 6);
+            this.groupBox_information.Name = "groupBox_information";
+            this.groupBox_information.Size = new System.Drawing.Size(781, 182);
+            this.groupBox_information.TabIndex = 0;
+            this.groupBox_information.TabStop = false;
+            this.groupBox_information.Text = "个人信息";
             // 
-            // button_add
+            // groupBox2
             // 
-            this.button_add.Image = ((System.Drawing.Image)(resources.GetObject("button_add.Image")));
-            this.button_add.Location = new System.Drawing.Point(8, 577);
-            this.button_add.Name = "button_add";
-            this.button_add.Size = new System.Drawing.Size(27, 27);
-            this.button_add.TabIndex = 12;
-            this.button_add.UseVisualStyleBackColor = true;
-            this.button_add.Click += new System.EventHandler(this.button_add_Click);
+            this.groupBox2.Controls.Add(this.button_reset);
+            this.groupBox2.Controls.Add(this.button_confirm);
+            this.groupBox2.Controls.Add(this.textBox_newPasswordConfirm);
+            this.groupBox2.Controls.Add(this.textBox_newPassword);
+            this.groupBox2.Controls.Add(this.textBox_oldPassword);
+            this.groupBox2.Controls.Add(this.label_ro_repeatNewPassword);
+            this.groupBox2.Controls.Add(this.label_ro_newPassword);
+            this.groupBox2.Controls.Add(this.label_ro_oldPassword);
+            this.groupBox2.Location = new System.Drawing.Point(6, 194);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(781, 228);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "更改密码";
+            // 
+            // label_ro_ID
+            // 
+            this.label_ro_ID.AutoSize = true;
+            this.label_ro_ID.Location = new System.Drawing.Point(27, 35);
+            this.label_ro_ID.Name = "label_ro_ID";
+            this.label_ro_ID.Size = new System.Drawing.Size(41, 12);
+            this.label_ro_ID.TabIndex = 0;
+            this.label_ro_ID.Text = "学号：";
+            // 
+            // label_ro_name
+            // 
+            this.label_ro_name.AutoSize = true;
+            this.label_ro_name.Location = new System.Drawing.Point(27, 74);
+            this.label_ro_name.Name = "label_ro_name";
+            this.label_ro_name.Size = new System.Drawing.Size(41, 12);
+            this.label_ro_name.TabIndex = 1;
+            this.label_ro_name.Text = "姓名：";
+            // 
+            // label_ro_department
+            // 
+            this.label_ro_department.AutoSize = true;
+            this.label_ro_department.Location = new System.Drawing.Point(27, 114);
+            this.label_ro_department.Name = "label_ro_department";
+            this.label_ro_department.Size = new System.Drawing.Size(41, 12);
+            this.label_ro_department.TabIndex = 2;
+            this.label_ro_department.Text = "学院：";
+            // 
+            // label_ID
+            // 
+            this.label_ID.AutoSize = true;
+            this.label_ID.Location = new System.Drawing.Point(91, 35);
+            this.label_ID.Name = "label_ID";
+            this.label_ID.Size = new System.Drawing.Size(35, 12);
+            this.label_ID.TabIndex = 3;
+            this.label_ID.Text = "label";
+            // 
+            // label_name
+            // 
+            this.label_name.AutoSize = true;
+            this.label_name.Location = new System.Drawing.Point(91, 74);
+            this.label_name.Name = "label_name";
+            this.label_name.Size = new System.Drawing.Size(35, 12);
+            this.label_name.TabIndex = 4;
+            this.label_name.Text = "label";
+            // 
+            // label_department
+            // 
+            this.label_department.AutoSize = true;
+            this.label_department.Location = new System.Drawing.Point(91, 114);
+            this.label_department.Name = "label_department";
+            this.label_department.Size = new System.Drawing.Size(35, 12);
+            this.label_department.TabIndex = 5;
+            this.label_department.Text = "label";
+            // 
+            // label_ro_oldPassword
+            // 
+            this.label_ro_oldPassword.AutoSize = true;
+            this.label_ro_oldPassword.Location = new System.Drawing.Point(51, 58);
+            this.label_ro_oldPassword.Name = "label_ro_oldPassword";
+            this.label_ro_oldPassword.Size = new System.Drawing.Size(53, 12);
+            this.label_ro_oldPassword.TabIndex = 0;
+            this.label_ro_oldPassword.Text = "旧密码：";
+            // 
+            // label_ro_newPassword
+            // 
+            this.label_ro_newPassword.AutoSize = true;
+            this.label_ro_newPassword.Location = new System.Drawing.Point(51, 99);
+            this.label_ro_newPassword.Name = "label_ro_newPassword";
+            this.label_ro_newPassword.Size = new System.Drawing.Size(53, 12);
+            this.label_ro_newPassword.TabIndex = 1;
+            this.label_ro_newPassword.Text = "新密码：";
+            // 
+            // label_ro_repeatNewPassword
+            // 
+            this.label_ro_repeatNewPassword.AutoSize = true;
+            this.label_ro_repeatNewPassword.Location = new System.Drawing.Point(27, 136);
+            this.label_ro_repeatNewPassword.Name = "label_ro_repeatNewPassword";
+            this.label_ro_repeatNewPassword.Size = new System.Drawing.Size(77, 12);
+            this.label_ro_repeatNewPassword.TabIndex = 2;
+            this.label_ro_repeatNewPassword.Text = "新密码确认：";
+            // 
+            // textBox_oldPassword
+            // 
+            this.textBox_oldPassword.Location = new System.Drawing.Point(110, 55);
+            this.textBox_oldPassword.Name = "textBox_oldPassword";
+            this.textBox_oldPassword.Size = new System.Drawing.Size(100, 21);
+            this.textBox_oldPassword.TabIndex = 3;
+            // 
+            // textBox_newPassword
+            // 
+            this.textBox_newPassword.Location = new System.Drawing.Point(110, 96);
+            this.textBox_newPassword.Name = "textBox_newPassword";
+            this.textBox_newPassword.Size = new System.Drawing.Size(100, 21);
+            this.textBox_newPassword.TabIndex = 4;
+            // 
+            // textBox_newPasswordConfirm
+            // 
+            this.textBox_newPasswordConfirm.Location = new System.Drawing.Point(110, 133);
+            this.textBox_newPasswordConfirm.Name = "textBox_newPasswordConfirm";
+            this.textBox_newPasswordConfirm.Size = new System.Drawing.Size(100, 21);
+            this.textBox_newPasswordConfirm.TabIndex = 5;
+            // 
+            // button_confirm
+            // 
+            this.button_confirm.Location = new System.Drawing.Point(51, 177);
+            this.button_confirm.Name = "button_confirm";
+            this.button_confirm.Size = new System.Drawing.Size(75, 23);
+            this.button_confirm.TabIndex = 6;
+            this.button_confirm.Text = "确认更改";
+            this.button_confirm.UseVisualStyleBackColor = true;
+            // 
+            // button_reset
+            // 
+            this.button_reset.Location = new System.Drawing.Point(135, 177);
+            this.button_reset.Name = "button_reset";
+            this.button_reset.Size = new System.Drawing.Size(75, 23);
+            this.button_reset.TabIndex = 7;
+            this.button_reset.Text = "重置";
+            this.button_reset.UseVisualStyleBackColor = true;
             // 
             // UserForm
             // 
@@ -354,6 +527,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_selectedCourses)).EndInit();
             this.tabPage_schedule.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_schedule)).EndInit();
+            this.tabPage_information.ResumeLayout(false);
+            this.groupBox_information.ResumeLayout(false);
+            this.groupBox_information.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,5 +568,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn s_detail;
         private System.Windows.Forms.Button button_add;
         private System.Windows.Forms.Button button_remove;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label_ro_repeatNewPassword;
+        private System.Windows.Forms.Label label_ro_newPassword;
+        private System.Windows.Forms.Label label_ro_oldPassword;
+        private System.Windows.Forms.GroupBox groupBox_information;
+        private System.Windows.Forms.Label label_department;
+        private System.Windows.Forms.Label label_name;
+        private System.Windows.Forms.Label label_ID;
+        private System.Windows.Forms.Label label_ro_department;
+        private System.Windows.Forms.Label label_ro_name;
+        private System.Windows.Forms.Label label_ro_ID;
+        private System.Windows.Forms.TextBox textBox_newPassword;
+        private System.Windows.Forms.TextBox textBox_oldPassword;
+        private System.Windows.Forms.Button button_confirm;
+        private System.Windows.Forms.TextBox textBox_newPasswordConfirm;
+        private System.Windows.Forms.Button button_reset;
     }
 }

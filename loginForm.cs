@@ -49,5 +49,10 @@ namespace ElectiveManagementSystem
         {
             kernel.Close();
         }
+
+        private void button_passwordForgot_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("忘掉就忘掉吧！旧的不去，新的不来。。。");
+        }
     }
 }
