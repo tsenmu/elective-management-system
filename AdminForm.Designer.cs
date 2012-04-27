@@ -59,6 +59,7 @@
             this.tabControl.Controls.Add(this.tabPage_userManagement);
             this.tabControl.Controls.Add(this.tabPage_courseManagement);
             this.tabControl.Controls.Add(this.tabPage_systemManagement);
+            this.tabControl.ImeMode = System.Windows.Forms.ImeMode.On;
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;

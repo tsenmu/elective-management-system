@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace ElectiveManagementSystem
+{
+    public partial class AdminForm : Form
+    {
+        private Kernel kernel;
+        public AdminForm(Kernel kernel)
+        {
+            this.kernel = kernel;
+            InitializeComponent();
+        }
+
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+            kernel.Load(KernelLoadModifier.STUDENT, dataGridView_student);
+            kernel.Load(KernelLoadModifier.ALL_COURSES, dataGridView_allCourses);
+            kernel.Load(KernelLoadModifier.SYSTEM, openSwitch);
+            kernel.Load(KernelLoadModifier.COLUMN_ROOM, dataGridView_allCourses.Columns["room"]);
+            kernel.Load(KernelLoadModifier.COLUMN_DEPARTMENT, dataGridView_allCourses.Columns["department_course"]);
+            kernel.Load(KernelLoadModifier.COLUMN_DEPARTMENT, dataGridView_student.Columns["department"]);
+        }
+
+        private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            kernel.Close();
+        }
+
+        private void dataGridView_allCourses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView_allCourses_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView_allCourses.Columns[e.ColumnIndex].HeaderText == "上课时间")
+            {
+                if (e.Value != null)
+                    e.Value = Utils.DecodeTime(e.Value.ToString());
+            }
+            else if (dataGridView_allCourses.Columns[e.ColumnIndex].HeaderText == "开课院所")
+            {
+                
+            }
+        }
+
+
+        private void dataGridView_allCourses_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+<<<<<<< HEAD
+            kernel.update(KernelLoadModifier.ALL_COURSES);
+=======
+            if (dataGridView_system.Columns[e.ColumnIndex].HeaderText == "选课系统开关")
+            { }
+>>>>>>> b273697233c7646a955b41abf723828584219ad5
+        }
+
+        private void dataGridView_student_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.STUDENT);
+        }
+
+        private void dataGridView_allCourses_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.ALL_COURSES);
+        }
+
+        private void dataGridView_student_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.STUDENT);
+        }
+
+        private void dataGridView_allCourses_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            kernel.update(KernelLoadModifier.ALL_COURSES);
+        }
+
+        private void openSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            kernel.update(KernelLoadModifier.SYSTEM, openSwitch);
+        }
+
+    }
+}
