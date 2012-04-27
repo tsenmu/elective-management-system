@@ -117,59 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="deleteCourseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
-        MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAAPNcAADzXAWmVujkAAARgSURBVEhL7ZR/TNR1GMef73En
-        9wO44zh+KD+qiZwSMpvaxpStXDgz2MBYQCShNUgO6OD4lZ7gMJFZoneBioShhWWj3JiKNhpDkBjhWqtY
-        DXW52fzLrX9qbdz38+75wGGA+gdt/tO67fV9vt+7z/O8n/fz3B0BoMfNYxeQBv4XWdQEFnX4335B/kMi
-        5CZjcHNIZqw3rjTaE10S6Ykqj/BGusK9Ea4wb7jL6g2rtjaHlYUesDosTaEO80FLachBc6mpKdhhbDI5
-        9M3GMr3HWKH3GlxazxKn4glwULvGSR1USYdoO+1XTLT27LqO3j8vYASjGBGjGFavYUAdxBW1H33qFVxQ
-        +9ArLuK86MU5fIGz+ByncAbH0YE2tMMj2tCienFIHEGTeA/1eBfVcKMEFUj9Iw3KOW0nOccrJwYxjA5x
-        Cl3iY3Siazq5BV404zD283UvGlEznejETuxCHgqRiVxs4WsqNuMZbEACX2Nghw1PwIpYWPjJdNcG6tPd
-        JddY1Y+9uIQ61Y3dogG1wo1KUYcy4UKxKEOhKEKeKESWyMNWkYVN4kWkiOexRqRw4TVczo4wxMGAcP5/
-        MjEGP0bQZCDoku4eOccqJ3pwHuWiiovX4m2ODlGBIlHKAsV4VexAtshHushGmshAqkjDOpGKJKzHcqzG
-        MsRz19FYwv0TguYzyYK97GTXmOPn0+jGGzyMYpTjTY47+O41ficHBcjisWzFNryAdGwEC/CAkvAsl07m
-        0gn3XSgIflDkFov0aG9S7vX8X47yFl7xbUfeVCFypgqQ7ctHpi8HL/m2YbMvA89NbUHK1Cas9W1Akroe
-        8WoyYtQE2NQ4mEQENCIEJNiFZK6bezyyXt0Nsves6n75t1wkDidj5UAS7AOJsF9NRMK1pxE/sgrLR1fi
-        yW9WIOpqLMIHl8I6FAXzkA2mIQt0oyYo49ztOM/+W/1MvM7I+B0jx/WJ9lPi34lZ/77+detJW4O13eY2
-        t4VWBXtCyk2Hg0uMLUGlhlajy9Bhqll28anq8P6YPZb+SLfx69DqwK/MNcoxbTW1ah7OMU0teTRFtJcs
-        RA1EVM24mHI/ZRyLmbeYSqKAeg1l3C6k1UglK+LIhEjSqTai/kAiJ5+pegScyyb4JUXeYer8B6WY/LDU
-        Ty2RtlFL6bcLKBEpZEQ46WBReNFEvxpmmpP5D4Nz2ckjRCr4fQcju9zDTvYFUOadnexkI7uIYJFQUhBC
-        9LuJ6IhmpsFFiUgX0r5MlC79TmMur6ClsE+PSgsLi7ATBBF9FDDdCNXPNDRP7AEnNf7O5X52+xNklB1K
-        ZycYGP8pLgUknSwiz+3zI8Xks2xynoh8OKAQneaEM4yMki7mMy3RZR3RLZ7/bOHZqLLIh3xGzr1xAXLh
-        80Tk8rq52KSe6Kc5TPD998wdKSDHswB5vpV3cnwBJ/j5A/+u7i9eqs7OVM51LnKM0t0PeoUbUOiGQWFX
-        Ct1k/mInX3JzbVywfQ4n/aJy1CzyN1Zyv2ouxSLIAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="addCourseButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-</value>
-  </data>
+  <metadata name="sid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="name.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="passwd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="department.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="cid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -182,7 +141,7 @@
   <metadata name="course_detail.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="rid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="room.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="department_course.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -191,28 +150,25 @@
   <metadata name="credit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="sid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="cid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="name.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="cname.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="passwd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="ctime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="department.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="course_detail.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="sid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="room.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="name.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="department_course.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="passwd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="department.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="credit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="openSwitch.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

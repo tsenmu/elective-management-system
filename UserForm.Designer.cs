@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage_electiveManagement = new System.Windows.Forms.TabPage();
+            this.button_add = new System.Windows.Forms.Button();
+            this.button_remove = new System.Windows.Forms.Button();
             this.comboBox_department = new System.Windows.Forms.ComboBox();
             this.label_courseDepartment = new System.Windows.Forms.Label();
             this.textBox_courseName = new System.Windows.Forms.TextBox();
@@ -57,8 +59,6 @@
             this.tabPage_schedule = new System.Windows.Forms.TabPage();
             this.dataGridView_schedule = new System.Windows.Forms.DataGridView();
             this.tabPage_information = new System.Windows.Forms.TabPage();
-            this.button_remove = new System.Windows.Forms.Button();
-            this.button_add = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage_electiveManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_unselectedCourses)).BeginInit();
@@ -93,13 +93,33 @@
             this.tabPage_electiveManagement.Controls.Add(this.label_SelectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_unselectedCourses);
             this.tabPage_electiveManagement.Controls.Add(this.dataGridView_selectedCourses);
-            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_electiveManagement.Location = new System.Drawing.Point(4, 22);
             this.tabPage_electiveManagement.Name = "tabPage_electiveManagement";
             this.tabPage_electiveManagement.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 607);
+            this.tabPage_electiveManagement.Size = new System.Drawing.Size(793, 606);
             this.tabPage_electiveManagement.TabIndex = 0;
             this.tabPage_electiveManagement.Text = "选课退课";
             this.tabPage_electiveManagement.UseVisualStyleBackColor = true;
+            // 
+            // button_add
+            // 
+            this.button_add.Image = ((System.Drawing.Image)(resources.GetObject("button_add.Image")));
+            this.button_add.Location = new System.Drawing.Point(8, 577);
+            this.button_add.Name = "button_add";
+            this.button_add.Size = new System.Drawing.Size(27, 27);
+            this.button_add.TabIndex = 12;
+            this.button_add.UseVisualStyleBackColor = true;
+            this.button_add.Click += new System.EventHandler(this.button_add_Click);
+            // 
+            // button_remove
+            // 
+            this.button_remove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button_remove.BackgroundImage")));
+            this.button_remove.Location = new System.Drawing.Point(8, 216);
+            this.button_remove.Name = "button_remove";
+            this.button_remove.Size = new System.Drawing.Size(27, 27);
+            this.button_remove.TabIndex = 11;
+            this.button_remove.UseVisualStyleBackColor = true;
+            this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
             // 
             // comboBox_department
             // 
@@ -290,10 +310,10 @@
             // tabPage_schedule
             // 
             this.tabPage_schedule.Controls.Add(this.dataGridView_schedule);
-            this.tabPage_schedule.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_schedule.Location = new System.Drawing.Point(4, 22);
             this.tabPage_schedule.Name = "tabPage_schedule";
             this.tabPage_schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_schedule.Size = new System.Drawing.Size(793, 585);
+            this.tabPage_schedule.Size = new System.Drawing.Size(793, 606);
             this.tabPage_schedule.TabIndex = 1;
             this.tabPage_schedule.Text = "课表";
             this.tabPage_schedule.UseVisualStyleBackColor = true;
@@ -309,33 +329,13 @@
             // 
             // tabPage_information
             // 
-            this.tabPage_information.Location = new System.Drawing.Point(4, 21);
+            this.tabPage_information.Location = new System.Drawing.Point(4, 22);
             this.tabPage_information.Name = "tabPage_information";
             this.tabPage_information.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_information.Size = new System.Drawing.Size(793, 585);
+            this.tabPage_information.Size = new System.Drawing.Size(793, 606);
             this.tabPage_information.TabIndex = 2;
             this.tabPage_information.Text = "个人信息";
             this.tabPage_information.UseVisualStyleBackColor = true;
-            // 
-            // button_remove
-            // 
-            this.button_remove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button_remove.BackgroundImage")));
-            this.button_remove.Location = new System.Drawing.Point(8, 216);
-            this.button_remove.Name = "button_remove";
-            this.button_remove.Size = new System.Drawing.Size(27, 27);
-            this.button_remove.TabIndex = 11;
-            this.button_remove.UseVisualStyleBackColor = true;
-            this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
-            // 
-            // button_add
-            // 
-            this.button_add.Image = ((System.Drawing.Image)(resources.GetObject("button_add.Image")));
-            this.button_add.Location = new System.Drawing.Point(8, 577);
-            this.button_add.Name = "button_add";
-            this.button_add.Size = new System.Drawing.Size(27, 27);
-            this.button_add.TabIndex = 12;
-            this.button_add.UseVisualStyleBackColor = true;
-            this.button_add.Click += new System.EventHandler(this.button_add_Click);
             // 
             // UserForm
             // 
